@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rtv1.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: olbondar <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/08 16:08:04 by olbondar          #+#    #+#             */
-/*   Updated: 2018/07/08 16:42:21 by olbondar         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
@@ -22,8 +10,8 @@
 # include <fcntl.h>
 
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 800
+# define HEIGHT 600
 
 // for MAC OS key_code == 53; for Debian key_code == 65307
 # define KEY_ESC 53
