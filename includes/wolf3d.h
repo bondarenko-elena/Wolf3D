@@ -28,16 +28,27 @@
 // for MAC OS key_code == 53; for Debian key_code == 65307
 # define KEY_ESC 53
 
-typedef struct		s_object
+typedef struct		s_dxy
 {
-	char			*type;
-	t_vector		color;
-	t_vector		cam_pos;
-	t_vector		rotation;
-	double			power;
-	double			size;
-	struct s_object	*next;
-}					t_object;
+	double			x;
+	double			y;
+}					t_dxy;
+
+typedef struct		s_player
+{
+	struct s_dxy	position;
+	struct s_dxy	direction;
+	struct s_dxy	plane;
+	double			speed_turn;
+	double			speed_move;
+	int				z;
+	char			is_jump;
+	char			move_left;
+	char			move_right;
+	char			move_up;
+	char			move_down;
+	char			move_jump;
+}					t_player;
 
 typedef struct		s_env
 {
@@ -57,30 +68,13 @@ typedef struct		s_env
 	unsigned int 	color_2;
 	unsigned int 	color_3;
 	unsigned int 	color_4;
+	struct s_player player;
+	int 			**map;
+	int 			map_height;
+	int 			map_width;
 
 }					t_env;
 
-typedef struct		s_player
-{
-	struct s_dxy	position;
-	struct s_dxy	direction;
-	struct s_dxy	plane;
-	double			speed_turn;
-	double			speed_move;
-	int				z;
-	char			is_jump;
-	char			move_left;
-	char			move_right;
-	char			move_up;
-	char			move_down;
-	char			move_jump;
-}					t_player;
-
-typedef struct		s_dxy
-{
-	double			x;
-	double			y;
-}					t_dxy;
 
 int					main(int argc, char **argv);
 int 				check_file(char *filename);
@@ -89,15 +83,15 @@ void  				init_player(t_env *t_env);
 void				post_init_env(t_env *env);
 void 				malloc_error();
 int 				open_file(t_env *env, char *filename);
-void 				read_file(t_env *env, t_list *list);
+void 				read_file(int fd, t_env *env);
 void 				event(t_env *env);
 int					key_hook(int keycode, t_env *env);
 int 				expose_hook(t_env *env);
 void 				display(t_env *env);
 void 				put_pixel(t_env *env, int x, int y);
-
-
-
+void 				get_position(int fd, t_env *env);
+void 				read_line(char *line, int y, int **map, t_env *env);
+void				map_error();
 
 
 #endif

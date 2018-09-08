@@ -1,6 +1,6 @@
 #include "../includes/wolf3d.h"
 
-void init_player(t_env *t_env)
+void init_player(t_env *env)
 {
 	env->player.position.x = 0;
 	env->player.position.y = 0;

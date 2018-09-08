@@ -24,6 +24,9 @@ SRC := main.c \
 		display.c \
 		put_pixel.c \
 		init_player.c \
+		get_position.c \
+		read_line.c \
+		map_error.c \
 		
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))
