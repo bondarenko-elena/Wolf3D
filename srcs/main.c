@@ -7,6 +7,7 @@ int	main(int argc, char **argv)
 	if (argc == 2 && (check_file(argv[1]) == 0))
 	{
 		env = pre_init_env();
+		init_player(env);
 		if (open_file(env, argv[1]) != 0)
 		{
 			ft_putendl("Unable to read file.");

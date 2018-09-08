@@ -28,13 +28,6 @@
 // for MAC OS key_code == 53; for Debian key_code == 65307
 # define KEY_ESC 53
 
-typedef struct		s_vector
-{
-	double			x;
-	double			y;
-	double			z;
-}					t_vector;
-
 typedef struct		s_object
 {
 	char			*type;
@@ -67,9 +60,32 @@ typedef struct		s_env
 
 }					t_env;
 
+typedef struct		s_player
+{
+	struct s_dxy	position;
+	struct s_dxy	direction;
+	struct s_dxy	plane;
+	double			speed_turn;
+	double			speed_move;
+	int				z;
+	char			is_jump;
+	char			move_left;
+	char			move_right;
+	char			move_up;
+	char			move_down;
+	char			move_jump;
+}					t_player;
+
+typedef struct		s_dxy
+{
+	double			x;
+	double			y;
+}					t_dxy;
+
 int					main(int argc, char **argv);
 int 				check_file(char *filename);
 t_env 				*pre_init_env();
+void  				init_player(t_env *t_env);
 void				post_init_env(t_env *env);
 void 				malloc_error();
 int 				open_file(t_env *env, char *filename);

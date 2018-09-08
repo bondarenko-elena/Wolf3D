@@ -23,6 +23,7 @@ SRC := main.c \
 		expose_hook.c \
 		display.c \
 		put_pixel.c \
+		init_player.c \
 		
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))
