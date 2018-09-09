@@ -8,7 +8,6 @@ SRC := main.c \
 		event.c \
 		key_hook.c \
 		expose_hook.c \
-		display.c \
 		put_pixel.c \
 		init_player.c \
 		map_error.c \
@@ -17,6 +16,10 @@ SRC := main.c \
 		check_chars.c \
 		read_line.c \
 		get_y.c \
+		move_up.c \
+		move_down.c \
+		move_left.c \
+		move_right.c \
 		
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))
