@@ -10,9 +10,9 @@ void ray_casting(t_env *env)
 	while (x < env->width)
 	{
 		ray_init(env, x);
-		// ray_cal_step_side(e);
-		// ray_cal_dist(e);
-		// ray_draw(e, x);
+		ray_calculate_step_side(env);
+		ray_calculate_distance(env);
+		ray_draw(env, x);
 		x++;
 	}
 }

@@ -125,6 +125,9 @@ void 				move_right(t_env *env);
 void 				move_jump(t_env *env);
 void 				ray_casting(t_env *env);
 void 				ray_init(t_env *env, int x);
+void				ray_calculate_step_side(t_env *env);
+void				ray_calculate_distance(t_env *env);
+void				ray_draw(t_env *env, int x);
 
 
 #endif
