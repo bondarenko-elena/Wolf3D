@@ -15,7 +15,7 @@
 # define HEIGHT 600
 
 // ESC: for MAC OS key_code == 53; for Debian key_code == 65307
-# define KEY_ESC 53
+# define KEY_ESC 65307
 // W: for MAC OS key_code == 13; for Debian key_code == 
 # define KEY_UP 13
 // S: for MAC OS key_code == 1; for Debian key_code == 
@@ -27,11 +27,32 @@
 // SPACE: for MAC OS key_code == 49; for Debian key_code == 
 # define KEY_JUMP 49
 
+typedef struct		s_i_xy
+{
+	int				x;
+	int				y;
+}					t_i_xy;
+
 typedef struct		s_dir_xy
 {
 	double			x;
 	double			y;
 }					t_dir_xy;
+
+
+typedef struct		s_ray
+{
+	struct s_dir_xy	position;
+	struct s_dir_xy	direction;
+	struct s_i_xy	map;
+	struct s_dir_xy	side;
+	struct s_dir_xy	delta;
+	struct s_i_xy	step;
+	double			distance;
+	double			camera;
+	int				hit;
+	int				hit_side;
+}					t_ray;
 
 typedef struct		s_player
 {
@@ -75,6 +96,7 @@ typedef struct		s_env
 	int 			get_y;
 	// t_clock 		last_frame;
 	// t_clock 		next_frame;
+	t_ray			ray;
 
 }					t_env;
 
@@ -102,6 +124,7 @@ void 				move_left(t_env *env);
 void 				move_right(t_env *env);
 void 				move_jump(t_env *env);
 void 				ray_casting(t_env *env);
+void 				ray_init(t_env *env, int x);
 
 
 #endif

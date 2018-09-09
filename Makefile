@@ -22,6 +22,7 @@ SRC := main.c \
 		move_right.c \
 		ray_casting.c \
 		move_jump.c \
+		ray_init.c \
 		
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))
