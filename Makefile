@@ -5,16 +5,18 @@ SRC := main.c \
 		post_init_env.c \
 		malloc_error.c \
 		open_file.c \
-		read_file.c \
 		event.c \
 		key_hook.c \
 		expose_hook.c \
 		display.c \
 		put_pixel.c \
 		init_player.c \
-		get_position.c \
-		read_line.c \
 		map_error.c \
+		ft_tabledel.c \
+		get_position.c \
+		check_chars.c \
+		read_line.c \
+		get_y.c \
 		
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))

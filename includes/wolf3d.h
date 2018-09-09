@@ -60,6 +60,8 @@ typedef struct		s_env
 	int 			**map;
 	int 			map_height;
 	int 			map_width;
+	int 			check_chars;
+	int 			get_y;
 
 }					t_env;
 
@@ -71,15 +73,17 @@ void  				init_player(t_env *t_env);
 void				post_init_env(t_env *env);
 void 				malloc_error();
 int 				open_file(t_env *env, char *filename);
-void 				read_file(int fd, t_env *env);
 void 				event(t_env *env);
 int					key_hook(int keycode, t_env *env);
 int 				expose_hook(t_env *env);
 void 				display(t_env *env);
 void 				put_pixel(t_env *env, int x, int y);
-void 				get_position(int fd, t_env *env);
-void 				read_line(char *line, int y, int **map, t_env *env);
 void				map_error();
+char				**ft_tabledel(char **ret, size_t len);
+void 				get_position(int fd, t_env *env, char *filename);
+void				check_chars(int fd, char *filename, t_env *env);
+void				get_y(int fd, t_env *env, char *filename);
+void 				read_line(char *line, int y, t_env *env);
 
 
 #endif

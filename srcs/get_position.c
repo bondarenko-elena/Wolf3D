@@ -1,6 +1,6 @@
 #include "../includes/wolf3d.h"
 
-void get_position(int fd, t_env *env)
+void get_position(int fd, t_env *env, char *filename)
 {
 	char *line;
 	char **str_splitted;
@@ -24,6 +24,16 @@ void get_position(int fd, t_env *env)
 	env->map_height = ft_atoi(str_splitted[1]);
 	env->player.position.x = (double)ft_atoi(str_splitted[2]);
 	env->player.position.y = (double)ft_atoi(str_splitted[3]);
+
+	// printf("env->map_width: %d\n", env->map_width);
+	// printf("env->map_height: %d\n", env->map_height);
+	// printf("env->player.position.x: %lf\n", env->player.position.x);
+	// printf("env->player.position.y: %lf\n", env->player.position.y);
+
+	// ft_tabledel(str_splitted, 4);
+
+	get_y(fd, env, filename);
+
 	if (env->map_width < 0 || env->map_height < 0 || env->player.position.x < 0 || env->player.position.y < 0 || env->player.position.x >= env->map_width || env->player.position.y >= env->map_width)
 	{
 		printf("%d\n", 4);
