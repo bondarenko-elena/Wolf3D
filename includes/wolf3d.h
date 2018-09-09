@@ -100,6 +100,8 @@ void 				move_up(t_env *env);
 void 				move_down(t_env *env);
 void 				move_left(t_env *env);
 void 				move_right(t_env *env);
+void 				move_jump(t_env *env);
+void 				ray_casting(t_env *env);
 
 
 #endif

@@ -20,6 +20,8 @@ SRC := main.c \
 		move_down.c \
 		move_left.c \
 		move_right.c \
+		ray_casting.c \
+		move_jump.c \
 		
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))

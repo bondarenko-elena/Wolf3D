@@ -15,9 +15,9 @@ int expose_hook(t_env *env)
 		move_left(env);
 	if (env->player.move_right == 1)
 		move_right(env);
-
-
-	// ray_casting(env);
+	if (env->player.move_jump == 1)
+		move_jump(env);
+	ray_casting(env);
 	mlx_put_image_to_window(env->mlx_init, env->window, env->image, 0, 0);
 	return (0);
 }
