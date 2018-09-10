@@ -2,9 +2,11 @@
 
 void ray_init(t_env *env, int x)
 {
+	
 	env->ray.map.x = (int)env->ray.position.x;
 	env->ray.map.y = (int)env->ray.position.y;
 	env->ray.camera = 2 * x / (double)env->width - 1;
+	//  the direction of the ray can be calculated as the sum of the direction vector, and a part of the plane vector.
 	env->ray.direction.x = env->player.direction.x + env->player.plane.x * env->ray.camera;
 	env->ray.direction.y = env->player.direction.y + env->player.plane.y * env->ray.camera;
 	env->ray.delta.x = sqrt(1 + (env->ray.direction.y * env->ray.direction.y) /

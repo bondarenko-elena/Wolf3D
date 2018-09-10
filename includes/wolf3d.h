@@ -53,12 +53,12 @@ typedef struct		s_ray
 	int				hit;
 	int				hit_side;
 }					t_ray;
-
+// The ratio between the length of the direction and the camera plane determinates the FOV
 typedef struct		s_player
 {
-	struct s_dir_xy	position;
-	struct s_dir_xy	direction;
-	struct s_dir_xy	plane;
+	struct s_dir_xy	position; // represent the position vector of the player
+	struct s_dir_xy	direction; // represent the direction of the player
+	struct s_dir_xy	plane; // represent the camera plane of the player, should be perpendicular to the direction
 	double			speed_turn;
 	double			speed_move;
 	int				z;
@@ -94,8 +94,10 @@ typedef struct		s_env
 	int 			map_width;
 	int 			check_chars;
 	int 			get_y;
-	// t_clock 		last_frame;
+	// t_clock 		last_frame; the variables used to represent the time of the current and the previous frame
 	// t_clock 		next_frame;
+	double 			time;
+	double 			old_time;
 	t_ray			ray;
 
 }					t_env;

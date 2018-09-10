@@ -5,6 +5,7 @@ void ray_casting(t_env *env)
 	int		x;
 
 	x = 0;
+	// The ray starts at the position of the player (posX, posY)
 	env->ray.position.x = env->player.position.x;
 	env->ray.position.y = env->player.position.y;
 	while (x < env->width)
