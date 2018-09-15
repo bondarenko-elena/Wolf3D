@@ -26,6 +26,9 @@ SRC := main.c \
 		ray_calculate_step_side.c \
 		ray_calculate_distance.c \
 		ray_draw.c \
+		draw_line.c \
+		get_color.c \
+		put_pixel.c \
 
 		
 CC := gcc

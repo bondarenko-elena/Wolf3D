@@ -130,6 +130,9 @@ void 				ray_init(t_env *env, int x);
 void				ray_calculate_step_side(t_env *env);
 void				ray_calculate_distance(t_env *env);
 void				ray_draw(t_env *env, int x);
+void				draw_line(t_env *env, int x, int start, int end);
+unsigned int		get_color(t_env *env);
+void 				put_pixel(t_env *env, int x, int y);
 
 
 #endif

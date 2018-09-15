@@ -6,7 +6,9 @@ void		ray_draw(t_env *env, int x)
 	int		start;
 	int		end;
 
+	//Calculate height of line to draw on screen
 	height = (int)(env->height / env->ray.distance);
+	//calculate lowest and highest pixel to fill in current stripe
 	start = -height / 2 + env->height / 2;
 	if (start < 0)
 		start = 0;
