@@ -7,13 +7,14 @@ int	main(int argc, char **argv)
 	if (argc == 2 && (check_file(argv[1]) == 0))
 	{
 		env = pre_init_env();
-		init_player(env);
 		if (open_file(env, argv[1]) != 0)
 		{
 			ft_putendl("Unable to read file.");
 			return (-1);
 		}
 		post_init_env(env);
+		// to switch off autorepeat (just 1 event for keypress and keyrelease)
+		mlx_do_key_autorepeatoff(env->mlx_init);
 		event(env);
 		mlx_loop(env->mlx_init);
 	}

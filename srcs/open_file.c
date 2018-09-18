@@ -12,7 +12,8 @@ int open_file(t_env *env, char *filename)
 		return (-1);
 	get_position(fd, env, filename);
 	check_chars(fd, filename, env);
-	env->map = (int**)malloc(sizeof(int**) * env->get_y);
+	if (!(env->map = (int**)malloc(sizeof(int**) * env->get_y)))
+		malloc_error();
 	while (get_next_line(fd, &line) == 1)
 	{
 		read_line(line, y, env);

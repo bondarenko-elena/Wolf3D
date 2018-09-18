@@ -7,7 +7,7 @@ SRC := main.c \
 		open_file.c \
 		event.c \
 		key_hook.c \
-		expose_hook.c \
+		loop_hook.c \
 		put_pixel.c \
 		init_player.c \
 		map_error.c \

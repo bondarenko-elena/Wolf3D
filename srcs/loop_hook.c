@@ -1,6 +1,6 @@
 #include "../includes/wolf3d.h"
 
-int expose_hook(t_env *env)
+int loop_hook(t_env *env)
 {
 /*	env->last_frame = clock();
 	if (env->next_frame > env->last_frame)

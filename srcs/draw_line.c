@@ -6,10 +6,12 @@ void			draw_line(t_env *env, int x, int start, int end)
 	unsigned int	c;
 
 	i = 0;
-	c = get_color(env);
+	c = ' ';
+	// c = get_color(env);
 	// c = add_smog(c, env->ray.distance);
 	while (i < start + env->player.z)
 	{
+		puts("piu!");
 		put_pixel(env, x, i, env->color_sky);
 		i++;
 	}

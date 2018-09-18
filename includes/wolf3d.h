@@ -10,7 +10,7 @@
 # include <fcntl.h>
 # include <time.h>
 
-
+// size of screen
 # define WIDTH 800
 # define HEIGHT 600
 
@@ -26,6 +26,12 @@
 # define KEY_RIGHT 2
 // SPACE: for MAC OS key_code == 49; for Debian key_code == 
 # define KEY_JUMP 49
+
+// for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
+// x_mask is ignored on macos
+# define KEY_PRESS_MASK (1L<<0)
+// x_event set as 2 and funct set as an int key_press(int keycode, void *param) for a key press
+# define KEY_PRESS 2
 
 typedef struct		s_i_xy
 {
@@ -72,13 +78,17 @@ typedef struct		s_player
 
 typedef struct		s_env
 {
+	// ----------- for mlx -----------
+	void			*mlx_init;
 	char			*get_data_addr;
 	int				bits_per_pixel;
 	int				size_line;
 	int				endian;
 	void			*image;
-	void			*mlx_init;
+
 	void			*window;
+	// -------------------------------
+	char 			*pixel;
 	int 			width;
 	int 			height;
 	char 			*screen_name;
@@ -94,7 +104,7 @@ typedef struct		s_env
 	int 			map_width;
 	int 			check_chars;
 	int 			get_y;
-	// t_clock 		last_frame; the variables used to represent the time of the current and the previous frame
+	// t_clock 		last_frame; //the variables used to represent the time of the current and the previous frame
 	// t_clock 		next_frame;
 	double 			time;
 	double 			old_time;
@@ -112,8 +122,7 @@ void 				malloc_error();
 int 				open_file(t_env *env, char *filename);
 void 				event(t_env *env);
 int					key_hook(int keycode, t_env *env);
-int 				expose_hook(t_env *env);
-void 				put_pixel(t_env *env, int x, int y);
+int 				loop_hook(t_env *env);
 void				map_error();
 char				**ft_tabledel(char **ret, size_t len);
 void 				get_position(int fd, t_env *env, char *filename);
@@ -132,7 +141,7 @@ void				ray_calculate_distance(t_env *env);
 void				ray_draw(t_env *env, int x);
 void				draw_line(t_env *env, int x, int start, int end);
 unsigned int		get_color(t_env *env);
-void 				put_pixel(t_env *env, int x, int y);
+void 				put_pixel(t_env *env, int x, int y, unsigned int c);
 
 
 #endif
