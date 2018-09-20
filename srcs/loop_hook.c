@@ -1,23 +1,22 @@
 #include "../includes/wolf3d.h"
 
-int loop_hook(t_env *env)
+int		loop_hook(t_env *env)
 {
-/*	env->last_frame = clock();
-	if (env->next_frame > env->last_frame)
+	env->mlx.last_frame = clock();
+	if (env->mlx.next_frame > env->mlx.last_frame)
 		return (0);
-	env->next_frame = env->last_frame + (CLOCKS_PER_SEC / 100);
-*/
-	if (env->player.move_up == 1)
+	env->mlx.next_frame = env->mlx.last_frame + (CLOCKS_PER_SEC / 100);
+	if (env->player.move_up)
 		move_up(env);
-	if (env->player.move_down == 1)
+	if (env->player.move_down)
 		move_down(env);
-	if (env->player.move_left == 1)
-		move_left(env);
-	if (env->player.move_right == 1)
+	if (env->player.move_right)
 		move_right(env);
+	if (env->player.move_left)
+		move_left(env);
 	if (env->player.move_jump == 1)
 		move_jump(env);
 	ray_casting(env);
-	mlx_put_image_to_window(env->mlx_init, env->window, env->image, 0, 0);
+	mlx_put_image_to_window(env->mlx.mlx_init, env->mlx.window, env->mlx.image, 0, 0);
 	return (0);
 }

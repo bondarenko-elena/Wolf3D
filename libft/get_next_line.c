@@ -3,127 +3,107 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olbondar <olbondar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/19 19:25:25 by olbondar          #+#    #+#             */
-/*   Updated: 2018/05/19 20:21:44 by olbondar         ###   ########.fr       */
+/*   Created: 2016/01/13 10:40:37 by adespond          #+#    #+#             */
+/*   Updated: 2016/03/08 15:52:49 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*strjoin_gnl(char const *s1, char const *s2)
+static t_data	*new_data(int fd)
 {
-	char	*str;
-	size_t	len1;
-	size_t	len2;
+	t_data	*data;
 
-	if (!s1 && !s2)
-		return (NULL);
-	if (s1 == NULL)
-		len1 = 0;
-	else
-		len1 = ft_strlen(s1);
-	if (s2 == NULL)
-		len2 = 0;
-	else
-		len2 = ft_strlen(s2);
-	if ((str = ft_strnew(len1 + ft_strlen(s2) + 1)) == NULL)
-		return (NULL);
-	(len1 == 0) ? str : ft_strcpy(str, s1);
-	(len2 == 0) ? str : ft_strcpy((str + len1), s2);
-	return (str);
+	data = (t_data *)malloc(sizeof(t_data));
+	data->last = ft_strnew(BUFF_SIZE);
+	data->next = NULL;
+	data->fd = fd;
+	data->end = 0;
+	return (data);
 }
 
-t_list_my	*if_fd_exist(t_list_my **data, int fd)
+static t_data	*get_data(t_data *begin_data, int fd)
 {
-	t_list_my *lst;
+	t_data	*data;
 
-	lst = *data;
-	while (lst != NULL && lst->fd != fd)
-		lst = lst->next;
-	return (lst);
-}
-
-int			check_data(t_list_my **data, char *buff, int fd)
-{
-	t_list_my	*current;
-	char		*tmp;
-
-	current = if_fd_exist(data, fd);
-	if (current == NULL)
+	data = begin_data;
+	while (data)
 	{
-		if (!(current = (t_list_my*)ft_lstnew((void*)buff, (
-							ft_strlen(buff) + 1))))
-			return (-1);
-		current->fd = fd;
-		ft_lstadd_back((t_list**)data, (t_list*)current);
-	}
-	else
-	{
-		if (!(tmp = strjoin_gnl((char*)current->content, buff)))
-			return (-1);
-		free(current->content);
-		current->content = (void*)tmp;
-		current->content_size = ft_strlen(tmp) + 1;
-	}
-	if (ft_strstr((char*)current->content, "\n") != NULL)
-		return (1);
-	return (0);
-}
-
-char		*get_data(t_list_my **data, int fd)
-{
-	t_list_my	*curr;
-	char		*head;
-	char		*tail;
-	char		*tmp;
-
-	curr = if_fd_exist(data, fd);
-	if (curr->content == NULL)
-		return (NULL);
-	if ((tail = ft_strstr((char*)curr->content, "\n")) != NULL)
-	{
-		if (!(head = ft_strsub((char*)curr->content,
-						0, (curr->content_size - ft_strlen(++tail) - 2))))
-			return (NULL);
-		tmp = curr->content;
-		curr->content = (ft_strlen(tail) == 0) ? NULL : (void *)ft_strdup(tail);
-		curr->content_size = ft_strlen(tail) + 1;
-		free(tmp);
-	}
-	else
-	{
-		if (!(head = ft_strdup((char *)curr->content)))
-			return (NULL);
-		SETNULL(curr->content, curr->content, curr->content_size);
-	}
-	return (head);
-}
-
-int			get_next_line(const int fd, char **line)
-{
-	char				buff[BUFF_SIZE + 1];
-	static t_list_my	*data = NULL;
-	int					ret;
-	int					res;
-
-	if (fd < 0 || line == NULL || BUFF_SIZE < 1 || read(fd, buff, 0) < 0)
-		return (-1);
-	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
-	{
-		if (ret < 0 || fd < 0)
-			return (-1);
-		buff[ret] = '\0';
-		if ((res = check_data(&data, buff, fd)) == 1)
+		if (data->fd == fd)
 		{
-			*line = get_data(&data, fd);
+			return (data);
+		}
+		if (data->next == NULL)
+		{
+			data->next = new_data(fd);
+			return (data->next);
+		}
+		data = data->next;
+	}
+	return (NULL);
+}
+
+static int		ft_read(t_data *data, char *buff, int ret, char **line)
+{
+	if (data->end == 1)
+		return (0);
+	ret = read(data->fd, buff, BUFF_SIZE);
+	if (ret <= 0 && *line[0] == '\0')
+		return (ret);
+	buff[BUFF_SIZE] = '\0';
+	if (ret < BUFF_SIZE)
+		data->end = 1;
+	return (1);
+}
+
+static int		ft_line(t_data *data, char *buff, char **line, int ret)
+{
+	buff = data->last;
+	data->last = ft_strnew(BUFF_SIZE);
+	while (1)
+	{
+		if (buff[0] == '\0' && (ret = ft_read(data, buff, ret, line)) != 1)
+			return (ret);
+		if ((data->last = ft_strchr(buff, '\n')) != NULL)
+		{
+			data->last++;
+			buff = ft_strsub(buff, 0, ft_strchrpos(buff, '\n'));
+			*line = ft_strjoin(*line, buff);
 			return (1);
 		}
-		if (res == -1)
-			return (-1);
+		else
+		{
+			*line = ft_strjoin(*line, buff);
+			buff = ft_strnew(BUFF_SIZE);
+			if (data->end == 1)
+			{
+				data->last = ft_strnew(BUFF_SIZE);
+				return (1);
+			}
+		}
 	}
-	if ((*line = get_data(&data, fd)) != NULL)
-		return (1);
-	return (0);
+	return (1);
+}
+
+int				get_next_line(int const fd, char **line)
+{
+	static t_data	*begin_data;
+	t_data			*data;
+	char			*buff;
+	int				ret;
+	// char			*test;
+
+	ret = 0;
+	if (fd < 0 || !line || BUFF_SIZE < 1)
+		return (-1);
+	if (begin_data == NULL)
+		begin_data = new_data(fd);
+	buff = ft_strnew(BUFF_SIZE);
+	data = get_data(begin_data, fd);
+	// test = data->last;
+	*line = ft_strnew(BUFF_SIZE);
+	ret = ft_line(data, buff, line, ret);
+	return (ret);
 }

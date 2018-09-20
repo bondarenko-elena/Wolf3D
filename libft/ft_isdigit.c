@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olbondar <olbondar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 16:54:55 by olbondar          #+#    #+#             */
-/*   Updated: 2017/11/25 16:55:16 by olbondar         ###   ########.fr       */
+/*   Created: 2015/11/24 11:22:09 by adespond          #+#    #+#             */
+/*   Updated: 2015/11/27 12:47:48 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+int		ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
-	return (0);
+	else
+		return (0);
 }

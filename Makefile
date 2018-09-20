@@ -1,65 +1,58 @@
-NAME := Wolf3D
-SRC := main.c \
-		check_file.c \
-		pre_init_env.c \
-		post_init_env.c \
-		malloc_error.c \
-		open_file.c \
-		event.c \
-		key_hook.c \
-		loop_hook.c \
-		put_pixel.c \
-		init_player.c \
-		map_error.c \
-		ft_tabledel.c \
-		get_position.c \
-		check_chars.c \
-		read_line.c \
-		get_y.c \
-		move_up.c \
-		move_down.c \
-		move_left.c \
-		move_right.c \
-		ray_casting.c \
-		move_jump.c \
-		ray_init.c \
-		ray_calculate_step_side.c \
-		ray_calculate_distance.c \
-		ray_draw.c \
-		draw_line.c \
-		get_color.c \
-		put_pixel.c \
-		add_smog.c \
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: adespond <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/11/23 11:41:24 by adespond          #+#    #+#              #
+#    Updated: 2016/03/17 18:30:22 by adespond         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-		
-CC := gcc
-SRC := $(addprefix srcs/,$(SRC))
-OBJ := $(SRC:.c=.o)
-HEADLIB := libft/
-HEADMLX := /usr/local/include
-CFLAGS := -Wall -Wextra -Werror
-LIBMLX := /usr/local/lib
-FRAMEWS := -lmlx -framework OpenGL -framework AppKit
+NAME	= wolf3d
 
-all: create_lib $(NAME)
+SRC		= src/main.c \
+		  src/error.c \
+		  src/draw.c \
+		  src/ray.c \
+		  src/read.c \
+		  src/key.c \
+		  src/move.c
 
-create_lib:
-	@make -C libft
+		  src/check_file.c \
+		  src/init_env.c \
+		  src/init_player.c \
+		  src/event.c \
+		  src/malloc_error.c \
+		  src/loop_hook.c \
+
+OBJ		= $(patsubst src/%.c,obj/%.o,$(SRC))
+.SILENT:
+
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	@gcc -o $(NAME) $(OBJ) libft/libft.a -L $(LIBMLX) $(FRAMEWS)
-	@echo "\033[32mWolf3D is ready.\033[0m"
+	make -C libft/
+	gcc -Wall -Wextra -Werror -L libft/ -lft -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME)
+	printf '\033[32m[ ✔ ] %s\n\033[0m' "Create Wolf3d"
 
-%.o: %.c
-	@$(CC) -c $(CFLAGS) -o $@ $< -I $(HEADLIB) -I $(HEADMLX) -I includes
+obj/%.o: src/%.c
+	mkdir -p obj
+	gcc -Wall -Wextra -Werror -c $< -o $@
+	printf '\033[0m[ ✔ ] %s\n\033[0m' "$<"
 
 clean:
-	@rm -rf $(OBJ)
+	/bin/rm -rf obj/
+	make -C libft/ clean
+	printf '\033[31m[ ✔ ] %s\n\033[0m' "Clean Wolf3d"
 
 fclean: clean
-	@rm -rf $(NAME)
-	@make fclean -C libft
+	/bin/rm -f $(NAME)
+	make -C libft/ fclean
+	printf '\033[31m[ ✔ ] %s\n\033[0m' "Fclean Wold3d"
 
-re: @fclean all
+re: fclean all
 
-.PHONY: create_lib all clean fclean re
+all: $(NAME)
+.PHONY: clean fclean re all

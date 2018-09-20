@@ -2,22 +2,22 @@
 
 #include "../includes/wolf3d.h"
 
-int	main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_env	*env;
 
 	if (argc == 2 && (check_file(argv[1]) == 0))
 	{
-		env = pre_init_env();
-		if (open_file(env, argv[1]) != 0)
+		env = init_env();
+		if (open_file(env, argv[1]) == 0)
 		{
+			free(env);
 			ft_putendl("Unable to read file.");
 			return (-1);
 		}
-		post_init_env(env);
-		mlx_do_key_autorepeatoff(env->mlx_init);
+		env->mlx.window = mlx_new_window(env->mlx.mlx_init, WIDTH, HEIGHT, "Wolf3d olbondar@42");
 		event(env);
-		mlx_loop(env->mlx_init);
+		mlx_loop(env->mlx.mlx_init);
 	}
 	if (argc == 2 && (check_file(argv[1]) == -1))
 		ft_putendl("Wrong input map. Available maps is between 1 and 3");

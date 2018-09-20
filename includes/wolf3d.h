@@ -16,16 +16,16 @@
 
 // ESC: for MAC OS key_code == 53; for Debian key_code == 65307
 # define KEY_ESC 65307
-// W: for MAC OS key_code == 13; for Debian key_code == 
-# define KEY_UP 13
-// S: for MAC OS key_code == 1; for Debian key_code == 
-# define KEY_DOWN 1
-// A: for MAC OS key_code == 0; for Debian key_code == 
-# define KEY_LEFT 0
-// D: for MAC OS key_code == 2; for Debian key_code == 
-# define KEY_RIGHT 2
-// SPACE: for MAC OS key_code == 49; for Debian key_code == 
-# define KEY_JUMP 49
+// W: for MAC OS key_code == 13; for Debian key_code == 119
+# define KEY_UP 119
+// S: for MAC OS key_code == 1; for Debian key_code == 115
+# define KEY_DOWN 115
+// A: for MAC OS key_code == 0; for Debian key_code == 97
+# define KEY_LEFT 97
+// D: for MAC OS key_code == 2; for Debian key_code == 100
+# define KEY_RIGHT 100
+// SPACE: for MAC OS key_code == 49; for Debian key_code == 32
+# define KEY_JUMP 32
 
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
 // x_mask is ignored on macos
@@ -33,38 +33,23 @@
 // x_event set as 2 and funct set as an int key_press(int keycode, void *param) for a key press
 # define KEY_PRESS 2
 
-typedef struct		s_i_xy
+typedef struct		s_ixy
 {
 	int				x;
 	int				y;
-}					t_i_xy;
+}					t_ixy;
 
-typedef struct		s_dir_xy
+typedef struct		s_dxy
 {
 	double			x;
 	double			y;
-}					t_dir_xy;
+}					t_dxy;
 
-
-typedef struct		s_ray
-{
-	struct s_dir_xy	position;
-	struct s_dir_xy	direction;
-	struct s_i_xy	map;
-	struct s_dir_xy	side;
-	struct s_dir_xy	delta;
-	struct s_i_xy	step;
-	double			distance;
-	double			camera;
-	int				hit;
-	int				hit_side;
-}					t_ray;
-// The ratio between the length of the direction and the camera plane determinates the FOV
 typedef struct		s_player
 {
-	struct s_dir_xy	position; // represent the position vector of the player
-	struct s_dir_xy	direction; // represent the direction of the player
-	struct s_dir_xy	plane; // represent the camera plane of the player, should be perpendicular to the direction
+	struct s_dxy	pos;
+	struct s_dxy	dir;
+	struct s_dxy	plane;
 	double			speed_turn;
 	double			speed_move;
 	int				z;
@@ -76,73 +61,77 @@ typedef struct		s_player
 	char			move_jump;
 }					t_player;
 
-typedef struct		s_env
+typedef struct		s_ray
 {
-	// ----------- for mlx -----------
+	struct s_dxy	pos;
+	struct s_dxy	dir;
+	struct s_ixy	map;
+	struct s_dxy	side;
+	struct s_dxy	delta;
+	struct s_ixy	step;
+	double			dist;
+	double			cam;
+	int				hit;
+	int				hit_side;
+}					t_ray;
+
+typedef struct		s_mlx
+{
 	void			*mlx_init;
-	char			*get_data_addr;
+	void			*window;
+	void			*image;
+	char			*pixel;
 	int				bits_per_pixel;
 	int				size_line;
 	int				endian;
-	void			*image;
+	clock_t			last_frame;
+	clock_t			next_frame;
+}					t_mlx;
 
-	void			*window;
-	// -------------------------------
-	char 			*pixel;
-	int 			width;
-	int 			height;
-	char 			*screen_name;
-	unsigned int 	color_sky;
-	unsigned int 	color_ground;
-	unsigned int 	color_1;
-	unsigned int 	color_2;
-	unsigned int 	color_3;
-	unsigned int 	color_4;
-	struct s_player player;
-	int 			**map;
-	int 			map_height;
-	int 			map_width;
-	int 			check_chars;
-	int 			get_y;
-	// t_clock 		last_frame; //the variables used to represent the time of the current and the previous frame
-	// t_clock 		next_frame;
-	double 			time;
-	double 			old_time;
-	t_ray			ray;
-
+typedef struct		s_env
+{
+	struct s_mlx	mlx;
+	struct s_player	player;
+	struct s_ray	ray;
+	int				height;
+	int				width;
+	int				**map;
+	int				map_width;
+	int				map_height;
+	unsigned int	color_1;
+	unsigned int	color_2;
+	unsigned int	color_3;
+	unsigned int	color_4;
+	unsigned int	color_sky;
+	unsigned int	color_ground;
+	int				start_x;
+	int				start_y;
 }					t_env;
-
 
 int					main(int argc, char **argv);
 int 				check_file(char *filename);
-t_env 				*pre_init_env();
-void  				init_player(t_env *t_env);
-void				post_init_env(t_env *env);
-void 				malloc_error();
-int 				open_file(t_env *env, char *filename);
-void 				event(t_env *env);
-int					key_hook(int keycode, t_env *env);
-int 				loop_hook(t_env *env);
-void				map_error();
-char				**ft_tabledel(char **ret, size_t len);
-void 				get_position(int fd, t_env *env, char *filename);
-void				check_chars(int fd, char *filename, t_env *env);
-void				get_y(int fd, t_env *env, char *filename);
-void 				read_line(char *line, int y, t_env *env);
-void 				move_up(t_env *env);
-void 				move_down(t_env *env);
-void 				move_left(t_env *env);
-void 				move_right(t_env *env);
-void 				move_jump(t_env *env);
-void 				ray_casting(t_env *env);
-void 				ray_init(t_env *env, int x);
-void				ray_calculate_step_side(t_env *env);
-void				ray_calculate_distance(t_env *env);
-void				ray_draw(t_env *env, int x);
-void				draw_line(t_env *env, int x, int start, int end);
-unsigned int		get_color(t_env *env);
-void 				put_pixel(t_env *env, int x, int y, unsigned int c);
-unsigned int		add_smog(unsigned int c, double distance);
+t_env				*init_env(void);
+void				init_player(t_env *e);
+void				event(t_env *env);
+void				malloc_error(void);
+int					loop_hook(t_env *env);
 
+
+
+
+int					loop_hook(t_env *e);
+int					open_file(t_env *e, char *f);
+int					key_hook(int k, t_env *e);
+int					key_press(int k, t_env *e);
+int					key_release(int k, t_env *e);
+void				draw_line(t_env *e, int x, int start, int end);
+void				raycasting(t_env *e);
+void				move_left(t_env *e);
+void				move_right(t_env *e);
+void				move_up(t_env *e);
+void				move_down(t_env *e);
+void				move_jump(t_env *e);
+void				error_map(void);
+void				error_arg(void);
 
 #endif

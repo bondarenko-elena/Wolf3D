@@ -3,45 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olbondar <olbondar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 17:00:08 by olbondar          #+#    #+#             */
-/*   Updated: 2017/11/26 13:41:54 by olbondar         ###   ########.fr       */
+/*   Created: 2015/11/25 15:27:01 by adespond          #+#    #+#             */
+/*   Updated: 2016/01/13 12:45:31 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-static size_t	ft_length(int n)
+static int	ft_count_char(int n)
 {
-	size_t		i;
+	int		len;
 
-	i = 1;
-	while (n /= 10)
-		i++;
-	return (i);
-}
-
-char			*ft_itoa(int n)
-{
-	char			*str;
-	size_t			length;
-	unsigned int	tmp;
-
-	length = ft_length(n);
-	tmp = n;
+	len = 1;
 	if (n < 0)
 	{
-		tmp = -n;
-		length++;
+		len++;
+		n = -n;
 	}
-	if (!(str = ft_strnew(length)))
+	while (n > 9)
+	{
+		len++;
+		n = n / 10;
+	}
+	return (len);
+}
+
+char		*ft_itoa(int n)
+{
+	char	*s;
+	// int		i;
+	int		len;
+
+	if (n == -2147483648)
+		return ("-2147483648");
+	// i = 0;
+	len = ft_count_char(n);
+	s = (char *)malloc(sizeof(char) * len + 1);
+	if (s == NULL)
 		return (NULL);
-	str[--length] = tmp % 10 + '0';
-	while (tmp /= 10)
-		str[--length] = tmp % 10 + '0';
+	s[len] = '\0';
 	if (n < 0)
-		str[0] = '-';
-	return (str);
+	{
+		n = -n;
+		s[0] = '-';
+	}
+	while (n > 9)
+	{
+		s[len - 1] = (n % 10) + '0';
+		n = n / 10;
+		len--;
+	}
+	s[len - 1] = n + '0';
+	return (s);
 }
