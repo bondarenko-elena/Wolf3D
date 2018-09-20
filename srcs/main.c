@@ -1,3 +1,5 @@
+/* mlx_do_key_autorepeatoff(env->mlx_init); --->  to switch off autorepeat (just 1 event for keypress and keyrelease)*/
+
 #include "../includes/wolf3d.h"
 
 int	main(int argc, char **argv)
@@ -13,7 +15,6 @@ int	main(int argc, char **argv)
 			return (-1);
 		}
 		post_init_env(env);
-		// to switch off autorepeat (just 1 event for keypress and keyrelease)
 		mlx_do_key_autorepeatoff(env->mlx_init);
 		event(env);
 		mlx_loop(env->mlx_init);

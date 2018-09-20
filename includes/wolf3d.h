@@ -142,6 +142,7 @@ void				ray_draw(t_env *env, int x);
 void				draw_line(t_env *env, int x, int start, int end);
 unsigned int		get_color(t_env *env);
 void 				put_pixel(t_env *env, int x, int y, unsigned int c);
+unsigned int		add_smog(unsigned int c, double distance);
 
 
 #endif

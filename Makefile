@@ -29,6 +29,7 @@ SRC := main.c \
 		draw_line.c \
 		get_color.c \
 		put_pixel.c \
+		add_smog.c \
 
 		
 CC := gcc

@@ -22,8 +22,8 @@ void get_position(int fd, t_env *env, char *filename)
 	}
 	env->map_width = ft_atoi(str_splitted[0]);
 	env->map_height = ft_atoi(str_splitted[1]);
-	env->player.position.x = (double)ft_atoi(str_splitted[2]);
-	env->player.position.y = (double)ft_atoi(str_splitted[3]);
+	env->player.position.x = (double)ft_atoi(str_splitted[2]) + 0.5;
+	env->player.position.y = (double)ft_atoi(str_splitted[3]) + 0.5;
 
 	// printf("env->map_width: %d\n", env->map_width);
 	// printf("env->map_height: %d\n", env->map_height);

@@ -7,11 +7,10 @@ void			draw_line(t_env *env, int x, int start, int end)
 
 	i = 0;
 	c = ' ';
-	// c = get_color(env);
-	// c = add_smog(c, env->ray.distance);
+	c = get_color(env);
+	c = add_smog(c, env->ray.distance);
 	while (i < start + env->player.z)
 	{
-		puts("piu!");
 		put_pixel(env, x, i, env->color_sky);
 		i++;
 	}
@@ -22,9 +21,9 @@ void			draw_line(t_env *env, int x, int start, int end)
 		i++;
 	}
 	i--;
-/*	while (i < e->height)
+	while (i < env->height)
 	{
-		put_pixel(e, x, i, add_smog(e->color_ground, abs(i - e->height) * 0.040));
+		put_pixel(env, x, i, add_smog(env->color_ground, abs(i - env->height) * 0.040));
 		i++;
-	}*/
+	}
 }
