@@ -26,6 +26,21 @@
 # define KEY_RIGHT 100
 // SPACE: for MAC OS key_code == 49; for Debian key_code == 32
 # define KEY_JUMP 32
+////////////////////////////////////////////////////////////////
+// UP: for MAC OS key_code == 126; for Debian key_code == 65362
+# define ARROW_UP 65362
+// DOWN: for MAC OS key_code == 125; for Debian key_code == 65364
+# define ARROW_DOWN 65364
+// LEFT: for MAC OS key_code == 123; for Debian key_code == 65361
+# define ARROW_LEFT 65361
+// RIGHT: for MAC OS key_code == 124; for Debian key_code == 65363
+# define ARROW_RIGHT 65363
+////////////////////////////////////////////////////////////////
+
+
+
+
+
 
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
 // x_mask is ignored on macos
