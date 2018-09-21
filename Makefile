@@ -1,58 +1,55 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: adespond <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/11/23 11:41:24 by adespond          #+#    #+#              #
-#    Updated: 2016/03/17 18:30:22 by adespond         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME := Wolf3D
 
-NAME	= wolf3d
+SRC := main.c \
+		check_file.c \
+		init_env.c \
+		init_player.c \
+		event.c \
+		malloc_error.c \
+		loop_hook.c \
+		open_file.c \
+		read_file.c \
+		read_line.c \
+		get_position.c \
+		move_up.c \
+		move_down.c \
+		move_left.c \
+		move_right.c \
+		move_jump.c \
+		ray_casting.c \
+		ray_draw.c \
+		ray_calculate_distance.c \
+		ray_calculate_step_side.c \
+		ray_init.c \
 
-SRC		= src/main.c \
-		  src/error.c \
-		  src/draw.c \
-		  src/ray.c \
-		  src/read.c \
-		  src/key.c \
-		  src/move.c
+CC := gcc
+SRC := $(addprefix srcs/,$(SRC))
+OBJ := $(SRC:.c=.o)
+HEADLIB := libft/
+HEADMLX := /usr/local/include
+CFLAGS := -Wall -Wextra -Werror
+LIBMLX := /usr/local/lib
+FRAMEWS := -lmlx -framework OpenGL -framework AppKit
 
-		  src/check_file.c \
-		  src/init_env.c \
-		  src/init_player.c \
-		  src/event.c \
-		  src/malloc_error.c \
-		  src/loop_hook.c \
+all: create_lib $(NAME)
 
-OBJ		= $(patsubst src/%.c,obj/%.o,$(SRC))
-.SILENT:
-
-all: $(NAME)
+create_lib:
+	@make -C libft
 
 $(NAME): $(OBJ)
-	make -C libft/
-	gcc -Wall -Wextra -Werror -L libft/ -lft -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME)
-	printf '\033[32m[ ✔ ] %s\n\033[0m' "Create Wolf3d"
+	@gcc -o $(NAME) $(OBJ) libft/libft.a -L $(LIBMLX) $(FRAMEWS)
+	@echo "\033[32mWolf3D is ready.\033[0m"
 
-obj/%.o: src/%.c
-	mkdir -p obj
-	gcc -Wall -Wextra -Werror -c $< -o $@
-	printf '\033[0m[ ✔ ] %s\n\033[0m' "$<"
+%.o: %.c
+	@$(CC) -c $(CFLAGS) -o $@ $< -I $(HEADLIB) -I $(HEADMLX) -I includes
 
 clean:
-	/bin/rm -rf obj/
-	make -C libft/ clean
-	printf '\033[31m[ ✔ ] %s\n\033[0m' "Clean Wolf3d"
+	@rm -rf $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
-	make -C libft/ fclean
-	printf '\033[31m[ ✔ ] %s\n\033[0m' "Fclean Wold3d"
+	@rm -rf $(NAME)
+	@make fclean -C libft
 
-re: fclean all
+re: @fclean all
 
-all: $(NAME)
-.PHONY: clean fclean re all
+.PHONY: create_lib all clean fclean re

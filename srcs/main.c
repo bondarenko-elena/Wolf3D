@@ -6,7 +6,7 @@ int				main(int argc, char **argv)
 {
 	t_env	*env;
 
-	if (argc == 2 && (check_file(argv[1]) == 0))
+	if (argc == 2 /*&& (check_file(argv[1]) == 0)*/)
 	{
 		env = init_env();
 		if (open_file(env, argv[1]) == 0)
