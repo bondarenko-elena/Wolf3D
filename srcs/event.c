@@ -1,4 +1,5 @@
 /*
+	// mlx_do_key_autorepeatoff(env->mlx_init); --->  to switch off autorepeat (just 1 event for keypress and keyrelease)
 	// the given function will be called when no event occurs
 	mlx_loop_hook(env->mlx_init, loop_hook, env);
 	// the given function will be called when event occurs.

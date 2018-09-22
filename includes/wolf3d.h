@@ -14,28 +14,28 @@
 # define WIDTH 800
 # define HEIGHT 600
 
-// ESC: for MAC OS key_code == 53; for Debian key_code == 65307
+// ESC: for MAC OS keycode == 53; for Debian keycode == 65307
 # define KEY_ESC 65307
-// W: for MAC OS key_code == 13; for Debian key_code == 119
+// W: for MAC OS keycode == 13; for Debian keycode == 119
 # define KEY_UP 119
-// S: for MAC OS key_code == 1; for Debian key_code == 115
+// S: for MAC OS keycode == 1; for Debian keycode == 115
 # define KEY_DOWN 115
-// A: for MAC OS key_code == 0; for Debian key_code == 97
+// A: for MAC OS keycode == 0; for Debian keycode == 97
 # define KEY_LEFT 97
-// D: for MAC OS key_code == 2; for Debian key_code == 100
+// D: for MAC OS keycode == 2; for Debian keycode == 100
 # define KEY_RIGHT 100
-// SPACE: for MAC OS key_code == 49; for Debian key_code == 32
+// SPACE: for MAC OS keycode == 49; for Debian keycode == 32
 # define KEY_JUMP 32
-////////////////////////////////////////////////////////////////
-// UP: for MAC OS key_code == 126; for Debian key_code == 65362
+// UP: for MAC OS keycode == 126; for Debian keycode == 65362
 # define ARROW_UP 65362
-// DOWN: for MAC OS key_code == 125; for Debian key_code == 65364
+// DOWN: for MAC OS keycode == 125; for Debian keycode == 65364
 # define ARROW_DOWN 65364
-// LEFT: for MAC OS key_code == 123; for Debian key_code == 65361
+// LEFT: for MAC OS keycode == 123; for Debian keycode == 65361
 # define ARROW_LEFT 65361
-// RIGHT: for MAC OS key_code == 124; for Debian key_code == 65363
+// RIGHT: for MAC OS keycode == 124; for Debian keycode == 65363
 # define ARROW_RIGHT 65363
-////////////////////////////////////////////////////////////////
+// M: for MAC OS keycode == 46; for Debian keycode == 109
+# define SWITCH_MUSIC 109
 
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
 // x_mask is ignored on macos
@@ -116,6 +116,7 @@ typedef struct		s_env
 	unsigned int	color_ground;
 	int				start_x;
 	int				start_y;
+	int 			switch_music;
 }					t_env;
 
 int					main(int argc, char **argv);
@@ -146,6 +147,7 @@ void				put_pixel(t_env *env, int x, int y, unsigned int c);
 unsigned int		get_color(t_env *env);
 unsigned int		add_smog(unsigned int c, double d);
 void				display_text(t_env *env);
+void				play_music(t_env *env);
 
 
 #endif

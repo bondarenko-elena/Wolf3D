@@ -13,6 +13,11 @@ int	key_hook(int keycode, t_env *env)
 		env->player.move_right = !env->player.move_right;
 	if (keycode == KEY_JUMP && env->player.move_jump == 0)
 		env->player.move_jump = 1;
+	if (keycode == SWITCH_MUSIC)
+	{
+		env->switch_music++;
+		play_music(env);
+	}
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(env->mlx.mlx_init, env->mlx.window);

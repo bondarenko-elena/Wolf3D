@@ -24,5 +24,6 @@ t_env			*init_env(void)
 	env->color_4 = 0x46fffc;
 	env->color_sky = 0x00cdff;
 	env->color_ground = 0x2700ff;
+	env->switch_music = 0;
 	return (env);
 }

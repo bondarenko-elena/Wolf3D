@@ -22,6 +22,7 @@ SRC := main.c \
 		ray_calculate_step_side.c \
 		ray_init.c \
 		display_text.c \
+		play_music.c \
 
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))
