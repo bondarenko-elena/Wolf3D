@@ -147,7 +147,7 @@ void				put_pixel(t_env *env, int x, int y, unsigned int c);
 unsigned int		get_color(t_env *env);
 unsigned int		add_smog(unsigned int c, double d);
 void				display_text(t_env *env);
-void				play_music(t_env *env);
+int 				play_music(t_env *env);
 
 
 #endif
