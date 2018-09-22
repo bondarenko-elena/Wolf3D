@@ -15,13 +15,13 @@ int				main(int argc, char **argv)
 			ft_putendl("Unable to read file.");
 			return (-1);
 		}
-		env->mlx.window = mlx_new_window(env->mlx.mlx_init, WIDTH, HEIGHT, "Wolf3d olbondar@42");
+		env->mlx.window = mlx_new_window(env->mlx.mlx_init, WIDTH, HEIGHT, "Wolf3D@olbondar");
 		event(env);
 		mlx_loop(env->mlx.mlx_init);
 	}
 	if (argc == 2 && (check_file(argv[1]) == -1))
 		ft_putendl("Wrong input map. Available maps is between 1 and 3");
 	if (argc < 2 || argc > 2)
-		ft_putendl("usage: ./Wolf3D maps/map.n. You should choose just one map.");
+		ft_putendl("Wrong number of arguments. Usage: ./Wolf3D maps/map.n.");
 	return (0);
 }

@@ -37,11 +37,6 @@
 # define ARROW_RIGHT 65363
 ////////////////////////////////////////////////////////////////
 
-
-
-
-
-
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
 // x_mask is ignored on macos
 # define KEY_PRESS_MASK (1L<<0)
@@ -150,6 +145,7 @@ void				draw_line(t_env *e, int x, int start, int end);
 void				put_pixel(t_env *env, int x, int y, unsigned int c);
 unsigned int		get_color(t_env *env);
 unsigned int		add_smog(unsigned int c, double d);
+void				display_text(t_env *env);
 
 
 #endif
