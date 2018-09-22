@@ -22,7 +22,7 @@ int	key_hook(int keycode, t_env *env)
 		play_music();
 	}
 	if (keycode == MUTE)
-		system("killall mpg123"); //system("killall afplay");
+		system("killall mpg123");
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(env->mlx.mlx_init, env->mlx.window);
