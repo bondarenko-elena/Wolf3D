@@ -12,7 +12,10 @@ int	key_hook(int keycode, t_env *env)
 	if (keycode == KEY_RIGHT || keycode == ARROW_RIGHT)
 		env->player.move_right = !env->player.move_right;
 	if (keycode == KEY_JUMP && env->player.move_jump == 0)
+	{
+		system("mpg123  music/jump.mp3 &");
 		env->player.move_jump = 1;
+	}
 	if (keycode == SWITCH_MUSIC)
 	{
 		system("killall mpg123");

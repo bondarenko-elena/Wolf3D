@@ -12,7 +12,7 @@ void	play_music()
 	int	random;
 
 	srand(time(NULL));
-	random = rand() % 4;
+	random = rand() % 10 + 1;
 	if (random == 1)
 		system("mpg123  music/music1.mp3 &");
 	if (random == 2)
@@ -21,4 +21,16 @@ void	play_music()
 		system("mpg123  music/music3.mp3 &");
 	if (random == 4)
 		system("mpg123  music/music4.mp3 &");
+	if (random == 5)
+		system("mpg123  music/music5.mp3 &");
+	if (random == 6)
+		system("mpg123  music/music6.mp3 &");
+	if (random == 7)
+		system("mpg123  music/music7.mp3 &");
+	if (random == 8)
+		system("mpg123  music/music8.mp3 &");
+	if (random == 9)
+		system("mpg123  music/music9.mp3 &");
+	if (random == 10)
+		system("mpg123  music/music10.mp3 &");
 }
