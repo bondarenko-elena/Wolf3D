@@ -14,7 +14,7 @@ int	key_hook(int keycode, t_env *env)
 	if (keycode == KEY_JUMP && env->player.move_jump == 0)
 		env->player.move_jump = 1;
 	if (keycode == SWITCH_MUSIC)
-		play_music(env);
+		play_music();
 	if (keycode == MUTE)
 		system("killall mpg123"); //system("killall afplay");
 	if (keycode == KEY_ESC)

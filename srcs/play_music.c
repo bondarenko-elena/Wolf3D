@@ -5,39 +5,30 @@ mpg123 is analogue for Linux
 
 #include "../includes/wolf3d.h"
 
-int	play_music(t_env *env)
+void	play_music()
 {
-	if (env->switch_music >= 0 && env->switch_music < 4)
-		env->switch_music++;
-	if (env->switch_music == 4)
-		env->switch_music = 0;
-	if (env->switch_music == 0)
-	{
-		puts("mute music");
-	}
-	if (env->switch_music == 1)
+	int	random;
+
+	srand(time(NULL));
+	random = rand() % 4;
+	if (random == 1)
 	{
 		// system("afplay ../music/music1.mp3 &");
 		system("mpg123  music/music1.mp3 &");
-		return (0);
 	}
-	if (env->switch_music == 2)
+	if (random == 2)
 	{
 		// system("afplay ../music/music2.mp3 &");
 		system("mpg123  music/music2.mp3 &");
-		return (0);
 	}
-	if (env->switch_music == 3)
+	if (random == 3)
 	{
 		// system("afplay ../music/music3.mp3 &");
 		system("mpg123  music/music3.mp3 &");
-		return (0);
 	}
-	if (env->switch_music == 4)
+	if (random == 4)
 	{
 		// system("afplay ../music/music4.mp3 &");
 		system("mpg123  music/music4.mp3 &");
-		return (0);
 	}
-	return (-1);
 }
