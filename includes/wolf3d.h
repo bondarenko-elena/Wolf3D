@@ -36,6 +36,8 @@
 # define ARROW_RIGHT 65363
 // M: for MAC OS keycode == 46; for Debian keycode == 109
 # define SWITCH_MUSIC 109
+// N: for MAC OS keycode == 45; for Debian keycode == 110
+#define MUTE 110
 
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
 // x_mask is ignored on macos

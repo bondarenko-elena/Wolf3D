@@ -15,6 +15,8 @@ int	key_hook(int keycode, t_env *env)
 		env->player.move_jump = 1;
 	if (keycode == SWITCH_MUSIC)
 		play_music(env);
+	if (keycode == MUTE)
+		system("killall mpg123"); //system("killall afplay");
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(env->mlx.mlx_init, env->mlx.window);
