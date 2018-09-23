@@ -73,6 +73,15 @@ typedef struct		s_player
 	char			move_jump;
 }					t_player;
 
+typedef struct	s_textures
+{
+	void		*image;
+	char		*data;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+}				t_textures;
+
 typedef struct		s_ray
 {
 	struct s_dir_xy	position;
