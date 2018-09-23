@@ -1,28 +1,6 @@
 NAME := Wolf3D
 
-SRC := main.c \
-		check_file.c \
-		init_env.c \
-		init_player.c \
-		event.c \
-		malloc_error.c \
-		loop_hook.c \
-		open_file.c \
-		read_file.c \
-		read_line.c \
-		get_position.c \
-		move_up.c \
-		move_down.c \
-		move_left.c \
-		move_right.c \
-		move_jump.c \
-		ray_casting.c \
-		ray_draw.c \
-		ray_calculate_distance.c \
-		ray_calculate_step_side.c \
-		ray_init.c \
-		display_text.c \
-		play_music.c \
+SRC := 
 
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))
