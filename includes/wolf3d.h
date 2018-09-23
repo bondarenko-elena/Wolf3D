@@ -73,14 +73,12 @@ typedef struct		s_player
 	char			move_jump;
 }					t_player;
 
-typedef struct	s_textures
+typedef struct	s_images
 {
-	void		*image;
 	char		*data;
-	int			bits_per_pixel;
-	int			size_line;
-	int			endian;
-}				t_textures;
+	int			width;
+	int			height;
+}				t_images;
 
 typedef struct		s_ray
 {
@@ -119,6 +117,7 @@ typedef struct		s_env
 	int				**map;
 	int				map_width;
 	int				map_height;
+	struct s_images *textures[6];
 	unsigned int	color_1;
 	unsigned int	color_2;
 	unsigned int	color_3;
@@ -132,7 +131,8 @@ typedef struct		s_env
 int					main(int argc, char **argv);
 int 				check_file(char *filename);
 t_env				*init_env(void);
-void				init_player(t_env *e);
+void				init_player(t_env *env);
+void				init_textures(t_env *env);
 int					open_file(t_env *e, char *filename);
 int					read_file(int fd, t_env *e);
 void				read_line(char *line, int y, int **map, t_env *e);
