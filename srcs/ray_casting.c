@@ -14,6 +14,8 @@ void			ray_casting(t_env *env)
 		ray_calculate_distance(env);
 		if (env->switch_textures == 0)
 			ray_draw(env, x);
+		if (env->switch_textures == 1)
+			draw_textures(env, x);
 		x++;
 	}
 }
