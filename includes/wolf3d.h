@@ -126,6 +126,7 @@ typedef struct		s_env
 	unsigned int	color_ground;
 	int				start_x;
 	int				start_y;
+	int 			switch_textures;
 }					t_env;
 
 int					main(int argc, char **argv);
