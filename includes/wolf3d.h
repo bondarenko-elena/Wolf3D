@@ -125,6 +125,7 @@ typedef struct		s_env
 	unsigned int	color_3;
 	unsigned int	color_4;
 	unsigned int	color_sky;
+	unsigned int 	color_night_sky;
 	unsigned int	color_ground;
 	int				start_x;
 	int				start_y;
