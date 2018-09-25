@@ -4,7 +4,9 @@ void			draw_line(t_env *env, int x, int start, int end)
 {
 	int				i;
 	unsigned int	c;
+	// int 			random;
 
+	srand(time(NULL));
 	c = get_color(env);
 	c = add_smog(c, env->ray.distance);
 	i = -1;
@@ -13,7 +15,11 @@ void			draw_line(t_env *env, int x, int start, int end)
 		if (env->switch_textures == 0)
 			put_pixel(env, x, i, env->color_sky);
 		if (env->switch_textures == 1)
+		{
 			put_pixel(env, x, i, 0x000000);
+			// random = rand() % env->width + 0;
+			put_pixel(env, (rand() % env->width + x), (rand() %  start + env->player.z + i), 0xffffff);
+		}
 	}
 	i--;
 	while (++i <= end + env->player.z && i < env->height)
