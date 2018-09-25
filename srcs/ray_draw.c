@@ -13,6 +13,5 @@ void		ray_draw(t_env *env, int x)
 	end = height / 2 + env->height / 2;
 	if (end >= env->height)
 		end = env->height - 1;
-	if (env->switch_textures == 0)
-		draw_line(env, x, start, end);
+	draw_line(env, x, start, end);
 }

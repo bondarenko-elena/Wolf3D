@@ -162,6 +162,7 @@ unsigned int		get_color(t_env *env);
 unsigned int		add_smog(unsigned int c, double d);
 void				display_text(t_env *env);
 void 				play_music();
+void				draw_line_textured(t_env *env, int x, int start, int end);
 
 
 #endif

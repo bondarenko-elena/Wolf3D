@@ -16,9 +16,13 @@ int		loop_hook(t_env *env)
 		move_left(env);
 	if (env->player.move_jump == 1)
 		move_jump(env);
-	ray_casting(env);
+
+
+	if (env->switch_textures == 0)
+		ray_casting(env);
+
+
 	mlx_put_image_to_window(env->mlx.mlx_init, env->mlx.window, env->mlx.image, 0, 0);
-	// mlx_put_image_to_window(env->mlx.mlx_init, env->textures[0], env->mlx.image, -1, -1);
 	display_text(env);
 	return (0);
 }
