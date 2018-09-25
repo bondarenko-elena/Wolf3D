@@ -9,7 +9,12 @@ void			draw_line(t_env *env, int x, int start, int end)
 	c = add_smog(c, env->ray.distance);
 	i = -1;
 	while (++i < start + env->player.z)
-		put_pixel(env, x, i, env->color_sky);
+	{
+		if (env->switch_textures == 0)
+			put_pixel(env, x, i, env->color_sky);
+		if (env->switch_textures == 1)
+			put_pixel(env, x, i, 0x000000);
+	}
 	i--;
 	while (++i <= end + env->player.z && i < env->height)
 		put_pixel(env, x, i, c);
