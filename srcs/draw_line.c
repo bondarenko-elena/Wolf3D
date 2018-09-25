@@ -4,6 +4,7 @@ void			draw_line(t_env *env, int x, int start, int end)
 {
 	int				i;
 	unsigned int	c;
+	// unsigned int 	color;
 	// int 			random;
 
 	srand(time(NULL));
@@ -15,11 +16,8 @@ void			draw_line(t_env *env, int x, int start, int end)
 		if (env->switch_textures == 0)
 			put_pixel(env, x, i, env->color_sky);
 		if (env->switch_textures == 1)
-		{
 			put_pixel(env, x, i, 0x000000);
-			// random = rand() % env->width + 0;
-			put_pixel(env, (rand() % env->width + x), (rand() %  start + env->player.z + i), 0xffffff);
-		}
+			// color = color_sky(x, i, env);
 	}
 	i--;
 	while (++i <= end + env->player.z && i < env->height)
