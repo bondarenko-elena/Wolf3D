@@ -4,6 +4,7 @@ int				main(int argc, char **argv)
 {
 	t_env	*env;
 
+	// env = init_env_textured();
 	if (argc == 2 /*&& (check_file(argv[1]) == 0)*/)
 	{
 		env = init_env();

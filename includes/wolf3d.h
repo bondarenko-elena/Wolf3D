@@ -40,6 +40,8 @@
 # define MUTE 110
 // N: for MAC OS keycode == 17; for Debian keycode == 116
 # define SWITCH_TEXTURES 116
+// R: for MAC OS keycode == 15; for Debian keycode == 114
+# define REESTABLISH_IMG 114
 
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
 // x_mask is ignored on macos
@@ -125,7 +127,6 @@ typedef struct		s_env
 	unsigned int	color_3;
 	unsigned int	color_4;
 	unsigned int	color_sky;
-	unsigned int 	color_night_sky;
 	unsigned int	color_ground;
 	int				start_x;
 	int				start_y;
@@ -162,7 +163,6 @@ unsigned int		get_color(t_env *env);
 unsigned int		add_smog(unsigned int c, double d);
 void				display_text(t_env *env);
 void 				play_music();
-void				draw_line_textured(t_env *env, int x, int start, int end);
 
 
 #endif

@@ -19,16 +19,11 @@ t_env			*init_env(void)
 			&(env->mlx.endian));
 	env->mlx.last_frame = clock();
 	env->mlx.next_frame = 0;
-/*	env->color_1 = 0xff2301;
-	env->color_2 = 0x3833ba;
-	env->color_3 = 0xffff00;
-	env->color_4 = 0x63ff00;*/
 	env->color_1 = 0x0000ff;
 	env->color_2 = 0xff0000;
 	env->color_3 = 0x00ffff;
 	env->color_4 = 0x00ff00;
 	env->color_sky = 0x92d9f5;
-	env->color_night_sky = 0x000000;
 	env->color_ground = 0x19191a;
 	env->switch_textures = 0; // textures is off
 	return (env);

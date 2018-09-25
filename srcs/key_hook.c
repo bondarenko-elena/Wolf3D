@@ -25,9 +25,13 @@ int	key_hook(int keycode, t_env *env)
 		system("killall mpg123");
 	if (keycode == SWITCH_TEXTURES)
 	{
-		env->switch_textures = !env->switch_textures;
-		// mlx_destroy_image(env->mlx.mlx_init, env->mlx.image);
-		// env->mlx.image = mlx_new_image(env->mlx.mlx_init, WIDTH, HEIGHT);
+		env->switch_textures = 1;
+		env->color_sky = 0x000000;
+	}
+	if (keycode == REESTABLISH_IMG)
+	{
+		env->switch_textures = 0;
+		env->color_sky = 0x92d9f5;
 	}
 	if (keycode == KEY_ESC)
 	{
