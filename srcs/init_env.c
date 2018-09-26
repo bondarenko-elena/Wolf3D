@@ -10,7 +10,6 @@ t_env			*init_env(void)
 	env->width = WIDTH;
 	env->height = HEIGHT;
 	init_player(env);
-	init_textures(env);
 	env->mlx.mlx_init = mlx_init();
 	env->mlx.bits_per_pixel = 0;
 	env->mlx.size_line = 0;
@@ -26,5 +25,6 @@ t_env			*init_env(void)
 	env->color_sky = 0x92d9f5;
 	env->color_ground = 0x19191a;
 	env->switch_textures = 0; // textures is off
+	init_textures(env);
 	return (env);
 }

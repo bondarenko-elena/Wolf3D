@@ -48,6 +48,7 @@
 # define KEY_PRESS_MASK (1L<<0)
 // x_event set as 2 and funct set as an int key_press(int keycode, void *param) for a key press
 # define KEY_PRESS 2
+# define SKY "textures/xpm/sky.xpm"
 
 typedef struct		s_i_xy
 {
@@ -79,9 +80,14 @@ typedef struct		s_player
 
 typedef struct	s_images
 {
+	void		*image;
 	char		*data;
 	int			width;
 	int			height;
+	char		*pixel;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
 }				t_images;
 
 typedef struct		s_ray
@@ -121,7 +127,7 @@ typedef struct		s_env
 	int				**map;
 	int				map_width;
 	int				map_height;
-	struct s_images *textures[6];
+	struct s_images textures[6];
 	unsigned int	color_1;
 	unsigned int	color_2;
 	unsigned int	color_3;
@@ -131,6 +137,7 @@ typedef struct		s_env
 	int				start_x;
 	int				start_y;
 	int 			switch_textures;
+
 }					t_env;
 
 int					main(int argc, char **argv);
@@ -163,7 +170,6 @@ unsigned int		get_color(t_env *env);
 unsigned int		add_smog(unsigned int c, double d);
 void				display_text(t_env *env);
 void 				play_music();
-int					get_color_textured(t_env *env);
 
 
 #endif
