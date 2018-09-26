@@ -7,7 +7,7 @@ void		init_textures(t_env *env)
 
 	width = 64;
 	height = 64;
-
+	// walls //
 	env->textures[0].image = mlx_xpm_file_to_image(env->mlx.mlx_init,	"textures/xpm/brick.xpm", &width, &height);
 	env->textures[0].data = mlx_get_data_addr(env->textures[0].image, &(env->textures[0].bits_per_pixel), &(env->textures[0].size_line), &(env->textures[0].endian));
 
@@ -19,13 +19,11 @@ void		init_textures(t_env *env)
 
 	env->textures[3].image = mlx_xpm_file_to_image(env->mlx.mlx_init,	"textures/xpm/wood.xpm", &width, &height);
 	env->textures[3].data = mlx_get_data_addr(env->textures[3].image, &(env->textures[3].bits_per_pixel), &(env->textures[3].size_line), &(env->textures[3].endian));
-
+	// sky //
 	env->textures[4].image = mlx_xpm_file_to_image(env->mlx.mlx_init,	"textures/xpm/sky.xpm", &width, &height);
 	env->textures[4].data = mlx_get_data_addr(env->textures[4].image, &(env->textures[4].bits_per_pixel), &(env->textures[4].size_line), &(env->textures[4].endian));
-
+	// ground //
 	env->textures[5].image = mlx_xpm_file_to_image(env->mlx.mlx_init,	"textures/xpm/grass.xpm", &width, &height);
 	env->textures[5].data = mlx_get_data_addr(env->textures[5].image, &(env->textures[5].bits_per_pixel), &(env->textures[5].size_line), &(env->textures[5].endian));
-
-
 
 }
