@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olbondar <olbondar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 10:05:02 by adespond          #+#    #+#             */
-/*   Updated: 2015/11/27 12:48:31 by adespond         ###   ########.fr       */
+/*   Created: 2017/11/25 17:02:33 by olbondar          #+#    #+#             */
+/*   Updated: 2017/12/02 15:11:52 by olbondar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t))
 {
-	t_list *l;
-
-	l = *alst;
-	(del)(l->content, l->content_size);
-	free(l);
-	*alst = NULL;
+	if ((alst != NULL) && (*alst != NULL) & (del != NULL))
+	{
+		del((*alst)->content, (*alst)->content_size);
+		free(*alst);
+		*alst = NULL;
+	}
 }

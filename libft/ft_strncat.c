@@ -3,29 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olbondar <olbondar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 12:31:01 by adespond          #+#    #+#             */
-/*   Updated: 2015/11/27 12:54:01 by adespond         ###   ########.fr       */
+/*   Created: 2017/11/25 17:16:08 by olbondar          #+#    #+#             */
+/*   Updated: 2017/11/25 17:33:55 by olbondar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *s1, const char *s2, size_t n)
+char	*ft_strncat(char *dest, const char *src, size_t n)
 {
-	int		i;
-	size_t	y;
+	char	*str;
+	size_t	k;
+	size_t	i;
+	size_t	j;
 
-	i = ft_strlen(s1);
-	y = 0;
-	if (s2 == NULL)
-		return (s1);
-	while (s2[y] != '\0' && y < n)
+	str = dest;
+	k = 0;
+	i = 0;
+	j = 0;
+	while (str[i] != '\0')
 	{
-		s1[i + y] = s2[y];
-		y++;
+		i++;
 	}
-	s1[i + y] = '\0';
-	return (s1);
+	while (src[j] != '\0' && k < n)
+	{
+		str[i++] = src[j++];
+		k++;
+	}
+	str[i] = '\0';
+	return (dest);
 }

@@ -3,14 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olbondar <olbondar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 10:40:37 by adespond          #+#    #+#             */
-/*   Updated: 2016/03/08 15:52:49 by adespond         ###   ########.fr       */
+/*   Created: 2018/05/19 19:25:25 by olbondar          #+#    #+#             */
+/*   Updated: 2018/05/19 20:21:44 by olbondar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+# include <fcntl.h>
+
+int		get_next_line(int const fd, char **line);
+
+typedef struct		s_data
+{
+	char			*last;
+	int				fd;
+	struct s_data	*next;
+	int				end;
+}					t_data;
+
+int					get_next_line(int const fd, char **line);
+// #endif
+
+int		ft_strchrpos(const char *s, int c)
+{
+	int		i;
+	char	c2;
+
+	i = 0;
+	c2 = (char)c;
+	while (s[i] != '\0' && c2 != s[i])
+		i++;
+	if (s[i] != c2)
+		return (-1);
+	else
+		return (i);
+}
+
+//////////////////////////////////////////////
 
 static t_data	*new_data(int fd)
 {

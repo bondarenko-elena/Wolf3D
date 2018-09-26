@@ -3,40 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olbondar <olbondar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 14:28:00 by adespond          #+#    #+#             */
-/*   Updated: 2015/11/27 12:55:19 by adespond         ###   ########.fr       */
+/*   Created: 2017/11/25 17:18:40 by olbondar          #+#    #+#             */
+/*   Updated: 2017/11/25 18:13:48 by olbondar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *s1, const char *s2)
+char	*ft_strstr(const char *big, const char *little)
 {
-	int		i;
-	int		y;
-	char	*occ;
+	size_t	i;
+	char	*b;
+	char	*l;
 
-	occ = 0;
-	i = 0;
-	if (s2[0] == '\0')
-		return ((char *)s1);
-	while (s1[i] != '\0')
+	b = (char *)big;
+	l = (char *)little;
+	if (*l == '\0')
+		return (b);
+	while (*b != '\0')
 	{
-		if (s1[i] == s2[0])
+		i = 0;
+		while (l[i] != '\0' && l[i] == b[i])
 		{
-			occ = (char *)s1 + i;
-			y = 0;
-			while (s1[i + y] == s2[y])
-			{
-				if (s2[y + 1] == '\0')
-					return (occ);
-				y++;
-			}
-			occ = 0;
+			i++;
 		}
-		i++;
+		if (l[i] == '\0')
+			return (b);
+		b++;
 	}
-	return (0);
+	return (NULL);
 }

@@ -18,6 +18,11 @@ int		loop_hook(t_env *env)
 		move_jump(env);
 	ray_casting(env);
 	mlx_put_image_to_window(env->mlx.mlx_init, env->mlx.window, env->mlx.image, 0, 0);
+/*	void *small_image; // = mlx_new_image(env->mlx.mlx_init, 32, 32);
+	int width; // = 32;
+	int height; // = 32;
+	small_image = mlx_xpm_file_to_image (env->mlx.mlx_init, "../textures/xpm/sky.xpm", &width, &height);
+	mlx_put_image_to_window(env->mlx.mlx_init, env->mlx.window, small_image, WIDTH / 2, HEIGHT / 2);*/
 	display_text(env);
 	return (0);
 }
