@@ -20,7 +20,6 @@ void			draw_line(t_env *env, int x, int start, int end)
 		}
 	}
 	i--;
-	printf("%d\n", end);
 	// ground //
 	while (++i <= end + env->player.z && i < env->height)
 	{
@@ -28,16 +27,7 @@ void			draw_line(t_env *env, int x, int start, int end)
 			put_pixel(env, x, i, c);
 		if (env->switch_textures == 1)
 		{
-			// put_pixel(env, x, i, c >> 5);
-			/*if ((i % 5) == 0)
-			{
-				put_pixel(env, x, i + 5, 0x000000);
-			}
-			else
-			{*/
-				put_pixel(env, x + 5, i, c * (x % 16 && i % 16));
-			// }
-			
+			put_pixel(env, x + 5, i, c * (x % 16 && i % 16));
 		}
 	}
 	i--;
@@ -48,8 +38,6 @@ void			draw_line(t_env *env, int x, int start, int end)
 
 
 /*
-bricks						---> c * (x % 16 && i % 16)
-
-
-
+bricks						---> put_pixel(env, x + 5, i, c * (x % 16 && i % 16));
+gradient 					---> put_pixel(env, x, i, c >> 5);
 */
