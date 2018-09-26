@@ -174,5 +174,4 @@ void				display_text(t_env *env);
 void 				play_music();
 void 				draw_sky(t_env *env);
 
-
 #endif
