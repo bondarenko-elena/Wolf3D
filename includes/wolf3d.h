@@ -11,8 +11,8 @@
 # include <time.h>
 
 // size of screen
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1024
+# define HEIGHT 768
 
 // ESC: for MAC OS keycode == 53; for Debian keycode == 65307
 # define KEY_ESC 65307
@@ -137,6 +137,8 @@ typedef struct		s_env
 	int				start_x;
 	int				start_y;
 	int 			switch_textures;
+	int 			x_texture;
+	int 			y_texture;
 
 }					t_env;
 
@@ -170,6 +172,7 @@ unsigned int		get_color(t_env *env);
 unsigned int		add_smog(unsigned int c, double d);
 void				display_text(t_env *env);
 void 				play_music();
+void 				draw_sky(t_env *env);
 
 
 #endif

@@ -8,15 +8,13 @@ void			draw_line(t_env *env, int x, int start, int end)
 	c = get_color(env);
 	c = add_smog(c, env->ray.distance);
 	i = -1;
+
+
 	// sky //
 	while (++i < start + env->player.z)
 	{
 		if (env->switch_textures == 0)
 			put_pixel(env, x, i, env->color_sky);
-		if (env->switch_textures == 1)
-		{
-			draw_sky(env, x, i /* y */);
-		}
 	}
 	i--;
 	// ground //

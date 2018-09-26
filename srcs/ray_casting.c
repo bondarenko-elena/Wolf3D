@@ -7,6 +7,9 @@ void			ray_casting(t_env *env)
 	x = 0;
 	env->ray.position.x = env->player.position.x;
 	env->ray.position.y = env->player.position.y;
+	// textured sky // -> SEGFAULT
+	// if (env->switch_textures == 1)
+		// draw_sky(env);
 	while (x < env->width)
 	{
 		ray_init(env, x);

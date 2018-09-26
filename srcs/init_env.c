@@ -25,6 +25,8 @@ t_env			*init_env(void)
 	env->color_sky = 0x92d9f5;
 	env->color_ground = 0x19191a;
 	env->switch_textures = 0; // textures is off
+	env->x_texture = 0;
+	env->y_texture = 0;
 	init_textures(env);
 	return (env);
 }
