@@ -28,7 +28,16 @@ void			draw_line(t_env *env, int x, int start, int end)
 			put_pixel(env, x, i, c);
 		if (env->switch_textures == 1)
 		{
-			put_pixel(env, x, i, c >> 5);
+			// put_pixel(env, x, i, c >> 5);
+			/*if ((i % 5) == 0)
+			{
+				put_pixel(env, x, i + 5, 0x000000);
+			}
+			else
+			{*/
+				put_pixel(env, x + 5, i, c * (x % 16 && i % 16));
+			// }
+			
 		}
 	}
 	i--;
@@ -36,3 +45,11 @@ void			draw_line(t_env *env, int x, int start, int end)
 	while (++i < env->height)
 		put_pixel(env, x, i, add_smog(env->color_ground, abs(i - env->height) * 0.040));
 }
+
+
+/*
+bricks						---> c * (x % 16 && i % 16)
+
+
+
+*/
