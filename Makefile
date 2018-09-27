@@ -31,7 +31,6 @@ SRC := add_smog.c \
 		ray_init.c \
 		switch_moves.c \
 		switch_music.c \
-		switch_textures.c \ 
 
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))
