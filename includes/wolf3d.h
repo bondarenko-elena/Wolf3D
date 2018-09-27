@@ -42,6 +42,21 @@
 # define SWITCH_TEXTURES 116
 // R: for MAC OS keycode == 15; for Debian keycode == 114
 # define RESET_TEXTURES 114
+// 1 - 7 to set certain texture
+# define ONE 18
+# define ONE_NUMPAD 83
+# define TWO 19
+# define TWO_NUMPAD 84
+# define THREE 20
+# define THREE_NUMPAD 85
+# define FOUR 21
+# define FOUR_NUMPAD 86
+# define FIVE 23
+# define FIVE_NUMPAD 87
+# define SIX 22
+# define SIX_NUMPAD 88
+# define SEVEN 26
+# define SEVEN_NUMPAD 89
 
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
 // x_mask is ignored on macos
@@ -154,5 +169,8 @@ void			ray_draw(t_env *env, int x);
 void			ray_calculate_distance(t_env *env);
 void			ray_calculate_step_side(t_env *env);
 void			ray_init(t_env *env, int x);
+void 			switch_moves(int keycode, t_env *env);
+void			switch_music(int keycode);
+int 			switch_textures(int keycode);
 
 #endif
