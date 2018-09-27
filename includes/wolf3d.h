@@ -42,20 +42,34 @@
 # define SWITCH_TEXTURES 116
 // R: for MAC OS keycode == 15; for Debian keycode == 114
 # define RESET_TEXTURES 114
-// 1 - 7 to set certain texture
-# define ONE 18
+// to set certain texture
+// 1: for MAC OS keycode == 18; for Debian keycode == 49
+# define ONE 49
+// 1 on the numpad: for MAC OS keycode == 83; for Debian keycode == 
 # define ONE_NUMPAD 83
-# define TWO 19
+// 2: for MAC OS keycode == 19; for Debian keycode == 50
+# define TWO 50
+// 2 on the numpad: for MAC OS keycode == 84; for Debian keycode == 
 # define TWO_NUMPAD 84
-# define THREE 20
+// 3: for MAC OS keycode == 20; for Debian keycode == 51
+# define THREE 51
+// 3 on the numpad: for MAC OS keycode == 85; for Debian keycode ==
 # define THREE_NUMPAD 85
-# define FOUR 21
+// 4: for MAC OS keycode == 21; for Debian keycode == 52
+# define FOUR 52
+// 4 on the numpad: for MAC OS keycode == 86; for Debian keycode ==
 # define FOUR_NUMPAD 86
-# define FIVE 23
+// 5: for MAC OS keycode == 23; for Debian keycode == 53
+# define FIVE 53
+// 5 on the numpad: for MAC OS keycode == 87; for Debian keycode ==
 # define FIVE_NUMPAD 87
-# define SIX 22
+// 6: for MAC OS keycode == 22; for Debian keycode == 54
+# define SIX 54
+// 6 on the numpad: for MAC OS keycode == 88; for Debian keycode ==
 # define SIX_NUMPAD 88
-# define SEVEN 26
+// 7: for MAC OS keycode == 26; for Debian keycode == 55
+# define SEVEN 55
+// 7 on the numpad: for MAC OS keycode == 89; for Debian keycode ==
 # define SEVEN_NUMPAD 89
 
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
@@ -135,8 +149,6 @@ typedef struct		s_env
 	unsigned int	color_4;
 	unsigned int	color_sky;
 	unsigned int	color_ground;
-	// int				start_x;
-	// int				start_y;
 	int 			switch_textures;
 }					t_env;
 
