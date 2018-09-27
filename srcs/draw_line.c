@@ -27,7 +27,7 @@ void			draw_line(t_env *env, int x, int start, int end)
 			put_pixel(env, x, i, c);
 		if (env->switch_textures == 1)
 		{
-			put_pixel(env, x, i, 65536 *  i * x * 4 / ((end + env->player.z) * env->height));
+			put_pixel(env, x, i, 65536 *  i * x * 4 / (env->height / end));
 		}
 	}
 	i--;
@@ -38,10 +38,13 @@ void			draw_line(t_env *env, int x, int start, int end)
 
 
 /*
-gradient 					---> put_pixel(env, x, i, c >> 5);
-bricks						---> put_pixel(env, x, i, c * (x % 16 && i % 16));
-abstract weave 				---> put_pixel(env, x, i, 65536 *  i * x * 256 / ((end + env->player.z) * env->height));
-abstract strips 			---> put_pixel(env, x, i, 65536 *  i * x * 4 / ((end + env->player.z) * env->height));
+gradient 								---> put_pixel(env, x, i, c >> 5);
+bricks									---> put_pixel(env, x, i, c * (x % 16 && i % 16));
+abstract weave blue						---> put_pixel(env, x, i, 65536 *  i * x * 256 / ((end + env->player.z) * env->height));
+abstract weave red						---> put_pixel(env, x, i, 65536 *  i * x * 4 / (env->height / end));
+abstract strips 						---> put_pixel(env, x, i, 65536 *  i * x * 4 / ((end + env->player.z) * env->width));
+abstract weave + abstract strips red	---> put_pixel(env, x, i, 65536 *  i * x * 4 / ((end) - env->width));
+abstract weave + abstract strips green	---> put_pixel(env, x, i, 65536 *  i * x * 4 / (env->width));
 
 black 0x000000
 white 0xffffff
