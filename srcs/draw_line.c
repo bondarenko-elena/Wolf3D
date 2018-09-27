@@ -11,7 +11,6 @@ void			draw_line(t_env *env, int x, int start, int end)
 	while (++i < start + env->player.z)
 		put_pixel(env, x, i, env->color_sky);
 	i--;
-
 	while (++i <= end + env->player.z && i < env->height)
 	{
 		c = get_color(env, x, i, end);

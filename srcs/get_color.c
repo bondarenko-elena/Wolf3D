@@ -7,6 +7,8 @@
 6 - abstract weave + abstract strips green	---> put_pixel(env, x, i, 65536 *  i * x * 4 / (env->width));
 
 7 - gradient 								---> put_pixel(env, x, i, c >> 5);
+
+return (0x000000);
 */
 
 #include "../includes/wolf3d.h"
@@ -20,7 +22,7 @@ unsigned int	get_color(t_env *env, int x, int i, int end)
 			if (env->switch_textures == 0)
 				return (env->color_1);
 			if (env->switch_textures == 1)
-				return (65536 *  i * x * 4 / (env->height / end));
+				return ((65536 * 251  *  i * x * 4 / (env->height / end)) >> 4); // blue OK
 			if (env->switch_textures == 2)
 				return (env->color_1 * (x % 16 && i % 16));
 		}
@@ -29,7 +31,7 @@ unsigned int	get_color(t_env *env, int x, int i, int end)
 			if (env->switch_textures == 0)
 				return (env->color_2);
 			if (env->switch_textures == 1)
-				return (65536 *  i * x * 4 / ((end + env->player.z) * env->width));
+				return (65536 * 251  *  i * x * 4 / (env->height / end)); // dark blue OK
 			if (env->switch_textures == 2)
 				return (env->color_2 * (x % 16 && i % 16));
 		}
@@ -39,13 +41,13 @@ unsigned int	get_color(t_env *env, int x, int i, int end)
 		if (env->switch_textures == 0)
 			return (env->color_3);
 		if (env->switch_textures == 1)
-			return (65536 *  i * x * 4 / ((end) - env->width));
-		if (env->switch_textures == 3)
-				return (env->color_2 * (x % 16 && i % 16));
+			return (65536 * 251 *  i * x * 256 / ((end + env->player.z) * env->height)); // red OK
+		if (env->switch_textures == 2)
+				return (env->color_3 * (x % 16 && i % 16));
 	}
 	if (env->switch_textures == 1)
-		return (65536 *  i * 2 * x * 4 / (env->width));
+		return ((6553 *  i * 24 * x * 24 / (env->height / end)) >> 23); // grey OK
 	if (env->switch_textures == 2)
-				return (env->color_4 * (x % 16 && i % 16));
+		return (env->color_4 * (x % 16 && i % 16));
 	return (env->color_4);
 }
