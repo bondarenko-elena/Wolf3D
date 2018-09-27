@@ -121,6 +121,7 @@ typedef struct		s_env
 	unsigned int	color_sky;
 	unsigned int	color_ground;
 	int 			switch_textures;
+	int 			music_tumbler;
 }					t_env;
 
 unsigned int	add_smog(unsigned int c, double d);
@@ -153,6 +154,6 @@ void			ray_calculate_distance(t_env *env);
 void			ray_calculate_step_side(t_env *env);
 void			ray_init(t_env *env, int x);
 void 			switch_moves(int keycode, t_env *env);
-void			switch_music(int keycode);
+void			switch_music(int keycode, t_env *env);
 
 #endif
