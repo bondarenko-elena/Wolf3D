@@ -27,7 +27,7 @@ void			draw_line(t_env *env, int x, int start, int end)
 			put_pixel(env, x, i, c);
 		if (env->switch_textures == 1)
 		{
-			put_pixel(env, x + 5, i, c * (x % 16 && i % 16));
+			put_pixel(env, x + 5, i, 65536 *  i * x * 256 / ((end + env->player.z) * env->height));
 		}
 	}
 	i--;
@@ -40,4 +40,13 @@ void			draw_line(t_env *env, int x, int start, int end)
 /*
 bricks						---> put_pixel(env, x + 5, i, c * (x % 16 && i % 16));
 gradient 					---> put_pixel(env, x, i, c >> 5);
+green grid 					---> put_pixel(env, x + 5, i, 65536 + 256 * 128 * (x % 2 && i % 2));
+color grid					---> put_pixel(env, x + 5, i, c * (x % 3 && i % 3));
+abstract weave 				---> put_pixel(env, x + 5, i, 65536 *  i * x * 256 / ((end + env->player.z) * env->height));
+
+black cross					---> put_pixel(env, x, i, c * (x != i && x != env->height - i));
+red gradient 				---> put_pixel(env, x + 5, i, 65536 *  i * 256 / env->height);
+
+black 0x000000
+white 0xffffff
 */
