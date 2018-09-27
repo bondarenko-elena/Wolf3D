@@ -14,10 +14,6 @@ void			draw_line(t_env *env, int x, int start, int end)
 	{
 		if (env->switch_textures == 0)
 			put_pixel(env, x, i, env->color_sky);
-		if (env->switch_textures == 1)
-		{
-			put_pixel(env, x, i, env->color_sky);
-		}
 	}
 	i--;
 	// ground //

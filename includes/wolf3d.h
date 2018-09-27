@@ -41,14 +41,13 @@
 // N: for MAC OS keycode == 17; for Debian keycode == 116
 # define SWITCH_TEXTURES 116
 // R: for MAC OS keycode == 15; for Debian keycode == 114
-# define REESTABLISH_IMG 114
+# define RESET_TEXTURES 114
 
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
 // x_mask is ignored on macos
 # define KEY_PRESS_MASK (1L<<0)
 // x_event set as 2 and funct set as an int key_press(int keycode, void *param) for a key press
 # define KEY_PRESS 2
-# define SKY "textures/xpm/sky.xpm"
 
 typedef struct		s_i_xy
 {
@@ -77,18 +76,6 @@ typedef struct		s_player
 	char			move_down;
 	char			move_jump;
 }					t_player;
-
-typedef struct	s_images
-{
-	void		*image;
-	char		*data;
-	int			width;
-	int			height;
-	char		*pixel;
-	int			bits_per_pixel;
-	int			size_line;
-	int			endian;
-}				t_images;
 
 typedef struct		s_ray
 {
@@ -127,51 +114,45 @@ typedef struct		s_env
 	int				**map;
 	int				map_width;
 	int				map_height;
-	struct s_images textures[6];
 	unsigned int	color_1;
 	unsigned int	color_2;
 	unsigned int	color_3;
 	unsigned int	color_4;
 	unsigned int	color_sky;
 	unsigned int	color_ground;
-	int				start_x;
-	int				start_y;
+	// int				start_x;
+	// int				start_y;
 	int 			switch_textures;
-	int 			x_texture;
-	int 			y_texture;
-
 }					t_env;
 
-int					main(int argc, char **argv);
-int 				check_file(char *filename);
-t_env				*init_env(void);
-void				init_player(t_env *env);
-void				init_textures(t_env *env);
-int					open_file(t_env *e, char *filename);
-int					read_file(int fd, t_env *e);
-void				read_line(char *line, int y, int **map, t_env *e);
-void				get_position(int fd, t_env *e);
-void				map_error(void);
-void				event(t_env *env);
-void				malloc_error(void);
-int					loop_hook(t_env *env);
-int					key_hook(int k, t_env *e);
-void				move_left(t_env *e);
-void				move_right(t_env *e);
-void				move_up(t_env *e);
-void				move_down(t_env *e);
-void				move_jump(t_env *e);
-void				ray_casting(t_env *env);
-void				ray_draw(t_env *env, int x);
-void				ray_calculate_distance(t_env *env);
-void				ray_calculate_step_side(t_env *env);
-void				ray_init(t_env *env, int x);
-void				draw_line(t_env *e, int x, int start, int end);
-void				put_pixel(t_env *env, int x, int y, unsigned int c);
-unsigned int		get_color(t_env *env);
-unsigned int		add_smog(unsigned int c, double d);
-void				display_text(t_env *env);
-void 				play_music();
-void 				draw_sky(t_env *env);
+unsigned int	add_smog(unsigned int c, double d);
+int 			check_file(char *filename);
+void			draw_line(t_env *e, int x, int start, int end);
+void			display_text(t_env *env);
+void			event(t_env *env);
+void			get_position(int fd, t_env *e);
+unsigned int	get_color(t_env *env);
+t_env			*init_env(void);
+void			init_player(t_env *env);
+int				key_hook(int k, t_env *e);
+int				loop_hook(t_env *env);
+int				main(int argc, char **argv);
+void			map_error(void);
+void			malloc_error(void);
+void			move_left(t_env *e);
+void			move_right(t_env *e);
+void			move_up(t_env *e);
+void			move_down(t_env *e);
+void			move_jump(t_env *e);
+int				open_file(t_env *e, char *filename);
+void			put_pixel(t_env *env, int x, int y, unsigned int c);
+void 			play_music();
+int				read_file(int fd, t_env *e);
+void			read_line(char *line, int y, int **map, t_env *e);
+void			ray_casting(t_env *env);
+void			ray_draw(t_env *env, int x);
+void			ray_calculate_distance(t_env *env);
+void			ray_calculate_step_side(t_env *env);
+void			ray_init(t_env *env, int x);
 
 #endif

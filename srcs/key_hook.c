@@ -2,6 +2,10 @@
 
 int	key_hook(int keycode, t_env *env)
 {
+	int	random;
+
+	srand(time(NULL));
+	random = rand() % 6 + 1;
 	printf("%d\n", keycode);
 	if (keycode == KEY_UP || keycode == ARROW_UP)
 		env->player.move_up = !env->player.move_up;
@@ -24,8 +28,8 @@ int	key_hook(int keycode, t_env *env)
 	if (keycode == MUTE)
 		system("killall mpg123");
 	if (keycode == SWITCH_TEXTURES)
-		env->switch_textures = 1;
-	if (keycode == REESTABLISH_IMG)
+		env->switch_textures = random;
+	if (keycode == RESET_TEXTURES)
 		env->switch_textures = 0;
 	if (keycode == KEY_ESC)
 	{
