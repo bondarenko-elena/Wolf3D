@@ -6,7 +6,6 @@ int	key_hook(int keycode, t_env *env)
 
 	srand(time(NULL));
 	random = rand() % 2 + 1;
-
 	printf("%d\n", keycode);
 	if (keycode == KEY_UP || keycode == ARROW_UP || keycode == KEY_DOWN || keycode == ARROW_DOWN ||
 		keycode == KEY_LEFT || keycode == ARROW_LEFT || keycode == KEY_RIGHT || keycode == ARROW_RIGHT ||
@@ -20,6 +19,7 @@ int	key_hook(int keycode, t_env *env)
 		env->switch_textures = 0;
 	if (keycode == KEY_ESC)
 	{
+		system("killall mpg123");
 		mlx_destroy_window(env->mlx.mlx_init, env->mlx.window);
 		exit(0);
 	}
