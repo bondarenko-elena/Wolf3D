@@ -15,8 +15,6 @@ int				main(int argc, char **argv)
 		}
 		env->mlx.window = mlx_new_window(env->mlx.mlx_init, WIDTH, HEIGHT, "Wolf3D@olbondar");
 		event(env);
-		// WTF
-		// ray_casting(env);
 		mlx_loop(env->mlx.mlx_init);
 	}
 	if (argc == 2 && (check_file(argv[1]) == -1))
