@@ -24,6 +24,9 @@ SRC := add_smog.c \
 		play_music.c \
 		read_file.c \
 		read_line.c \
+		return_wall_one.c \
+		return_wall_three.c \
+		return_wall_two.c \
 		ray_casting.c \
 		ray_draw.c \
 		ray_calculate_distance.c \
