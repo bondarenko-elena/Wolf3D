@@ -49,6 +49,8 @@
 // x_event set as 2 and funct set as an int key_press(int keycode, void *param) for a key press
 # define KEY_PRESS 2
 
+// valgrind --leak-check=full --leak-resolution=med sh run_wolf3d.sh maps/map.1
+
 typedef struct		s_i_xy
 {
 	int				x;
@@ -129,6 +131,7 @@ int 			check_file(char *filename);
 void			draw_line(t_env *e, int x, int start, int end);
 void			display_text(t_env *env);
 void			event(t_env *env);
+char			**ft_tabledel(char **ret, size_t len);
 void			get_position(int fd, t_env *e);
 unsigned int	get_color(t_env *env, int x, int i, int end);
 t_env			*init_env(void);

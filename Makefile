@@ -5,6 +5,7 @@ SRC := add_smog.c \
 		draw_line.c \
 		display_text.c \
 		event.c \
+		ft_tabledel.c \
 		get_position.c \
 		get_color.c \
 		init_env.c \
