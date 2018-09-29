@@ -25,9 +25,5 @@ void		get_position(int fd, t_env *e)
 	if (e->map_width < 0 || e->map_height < 0 || e->player.position.x < 0 ||
 			e->player.position.y < 0 || e->player.position.x >= e->map_width ||
 			e->player.position.y >= e->map_width)
-	{
-		ft_tabledel(line_splitted, i);
 		map_error();
-	}
-	// ft_tabledel(line_splitted, i);
 }

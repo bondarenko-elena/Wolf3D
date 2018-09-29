@@ -49,7 +49,7 @@
 // x_event set as 2 and funct set as an int key_press(int keycode, void *param) for a key press
 # define KEY_PRESS 2
 
-// valgrind --leak-check=full --leak-resolution=med sh run_wolf3d.sh maps/map.1
+// valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full --leak-resolution=med sh run_wolf3d.sh maps/map.1
 
 typedef struct		s_i_xy
 {
