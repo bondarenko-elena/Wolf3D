@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strchrpos.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olbondar <olbondar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olbondar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 17:05:03 by olbondar          #+#    #+#             */
-/*   Updated: 2018/09/30 10:39:13 by olbondar         ###   ########.fr       */
+/*   Created: 2018/09/30 10:59:40 by olbondar          #+#    #+#             */
+/*   Updated: 2018/09/30 11:00:26 by olbondar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t size)
+int		ft_strchrpos(const char *s, int c)
 {
-	while (size--)
-	{
-		*(char *)dst++ = *(char *)src;
-		if (*(char *)src++ == (char)c)
-			return ((char *)dst);
-	}
-	return (NULL);
+	int		i;
+	char	c2;
+
+	i = 0;
+	c2 = (char)c;
+	while (s[i] != '\0' && c2 != s[i])
+		i++;
+	if (s[i] != c2)
+		return (-1);
+	else
+		return (i);
 }

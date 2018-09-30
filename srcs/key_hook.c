@@ -22,7 +22,6 @@ int	key_hook(int keycode, t_env *env)
 		if (env->music_tumbler == 1)
 			system("killall afplay");
 		mlx_destroy_window(env->mlx.mlx_init, env->mlx.window);
-		// free(env->player);
 		free(env);
 		exit(0);
 	}

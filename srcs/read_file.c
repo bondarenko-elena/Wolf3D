@@ -17,5 +17,6 @@ int		read_file(int fd, t_env *e)
 	if (map[(int)e->player.position.x][(int)e->player.position.y] != 0)
 		map_error();
 	e->map = map;
+	// ft_tabledel(map, )
 	return (1);
 }

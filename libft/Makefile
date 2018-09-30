@@ -79,6 +79,7 @@ SRC = ft_memset.c \
 		ft_min.c \
 		ft_strlen_ch.c \
 		ft_countwords.c \
+		ft_strchrpos.c \
 		get_next_line.c \
 		
 OBJ = $(SRC:.c=.o)
