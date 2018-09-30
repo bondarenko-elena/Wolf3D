@@ -2,7 +2,7 @@
 
 int	key_hook(int keycode, t_env *env)
 {
-	printf("%d\n", keycode);
+	// printf("%d\n", keycode);
 	int	random;
 
 	srand(time(NULL));

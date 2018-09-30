@@ -6,7 +6,10 @@ t_env			*init_env(void)
 
 	env = (t_env *)malloc(sizeof(t_env));
 	if (env == NULL)
+	{
+		free(env);
 		malloc_error();
+	}
 	env->width = WIDTH;
 	env->height = HEIGHT;
 	init_player(env);

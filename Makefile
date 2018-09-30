@@ -2,6 +2,7 @@ NAME := wolf3d
 
 SRC := add_smog.c \
 		check_file.c \
+		close_program.c \
 		draw_line.c \
 		display_text.c \
 		event.c \

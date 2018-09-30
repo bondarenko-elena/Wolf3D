@@ -48,6 +48,8 @@
 # define KEY_PRESS_MASK (1L<<0)
 // x_event set as 2 and funct set as an int key_press(int keycode, void *param) for a key press
 # define KEY_PRESS 2
+# define CLOSE_PRGRM_MASK (1L << 17)
+# define CLOSE_PRGRM 17
 
 // valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full --leak-resolution=med sh run_wolf3d.sh maps/map.1
 
@@ -128,6 +130,7 @@ typedef struct		s_env
 
 unsigned int	add_smog(unsigned int c, double d);
 int 			check_file(char *filename);
+int				close_program(t_env *env);
 void			draw_line(t_env *e, int x, int start, int end);
 void			display_text(t_env *env);
 void			event(t_env *env);

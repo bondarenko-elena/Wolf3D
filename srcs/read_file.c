@@ -28,7 +28,6 @@ int		read_file(int fd, t_env *env)
 		free(map);
 		map_error();
 	}
-	// ???
 	env->map = map;
 	return (1);
 }
