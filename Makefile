@@ -1,4 +1,4 @@
-NAME := Wolf3D
+NAME := wolf3d
 
 SRC := add_smog.c \
 		check_file.c \

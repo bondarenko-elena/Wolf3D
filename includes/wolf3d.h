@@ -15,33 +15,33 @@
 # define HEIGHT 768
 
 // ESC: for MAC OS keycode == 53; for Debian keycode == 65307
-# define KEY_ESC 65307
+# define KEY_ESC 53
 // W: for MAC OS keycode == 13; for Debian keycode == 119
-# define KEY_UP 119
+# define KEY_UP 13
 // S: for MAC OS keycode == 1; for Debian keycode == 115
-# define KEY_DOWN 115
+# define KEY_DOWN 1
 // A: for MAC OS keycode == 0; for Debian keycode == 97
-# define KEY_LEFT 97
+# define KEY_LEFT 0
 // D: for MAC OS keycode == 2; for Debian keycode == 100
-# define KEY_RIGHT 100
+# define KEY_RIGHT 2
 // SPACE: for MAC OS keycode == 49; for Debian keycode == 32
-# define KEY_JUMP 32
+# define KEY_JUMP 49
 // UP: for MAC OS keycode == 126; for Debian keycode == 65362
-# define ARROW_UP 65362
+# define ARROW_UP 126
 // DOWN: for MAC OS keycode == 125; for Debian keycode == 65364
-# define ARROW_DOWN 65364
+# define ARROW_DOWN 125
 // LEFT: for MAC OS keycode == 123; for Debian keycode == 65361
-# define ARROW_LEFT 65361
+# define ARROW_LEFT 123
 // RIGHT: for MAC OS keycode == 124; for Debian keycode == 65363
-# define ARROW_RIGHT 65363
+# define ARROW_RIGHT 124
 // M: for MAC OS keycode == 46; for Debian keycode == 109
-# define SWITCH_MUSIC 109
+# define SWITCH_MUSIC 46
 // N: for MAC OS keycode == 45; for Debian keycode == 110
-# define MUTE 110
+# define MUTE 45
 // N: for MAC OS keycode == 17; for Debian keycode == 116
-# define SWITCH_TEXTURES 116
+# define SWITCH_TEXTURES 17
 // R: for MAC OS keycode == 15; for Debian keycode == 114
-# define RESET_TEXTURES 114
+# define RESET_TEXTURES 15
 
 // for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
 // x_mask is ignored on macos

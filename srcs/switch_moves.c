@@ -12,7 +12,7 @@ void switch_moves(int keycode, t_env *env)
 		env->player.move_right = !env->player.move_right;
 	if (keycode == KEY_JUMP && env->player.move_jump == 0)
 	{
-		system("mpg123  music/jump.mp3 &");
+		system("afplay music/jump.mp3 &");
 		env->player.move_jump = 1;
 	}
 }
