@@ -22,9 +22,10 @@ int	key_hook(int keycode, t_env *env)
 		if (env->music_tumbler == 1)
 			system("killall afplay");
 		mlx_destroy_window(env->mlx.mlx_init, env->mlx.window);
-		while (--env->map_height > -1)
+		env->map_height--;
+		while (env->map_height > -1)
 		{
-			free(env->map[--env->map_height]);
+			free(env->map[env->map_height]);
 			env->map_height--;
 		}
 		free(env->map);

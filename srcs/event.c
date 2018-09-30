@@ -12,6 +12,6 @@ void	event(t_env *env)
 	mlx_do_key_autorepeatoff(env->mlx.mlx_init);
 	mlx_loop_hook(env->mlx.mlx_init, loop_hook, env);
 	mlx_hook(env->mlx.window, KEY_PRESS, KEY_PRESS_MASK, key_hook, env);
-	mlx_hook(env->mlx.window, CLOSE_PRGRM, CLOSE_PRGRM_MASK, close_program, env);
+	// mlx_hook(env->mlx.window, CLOSE_PRGRM, CLOSE_PRGRM_MASK, close_program, env);
 	mlx_key_hook(env->mlx.window, key_hook, env);
 }

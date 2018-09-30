@@ -14,14 +14,24 @@ void		read_line(char *line, int y, int **map, t_env *e)
 	{
 		if (!(line_splitted[x][0] >= '0' && line_splitted[x][0] <= '9'
 					&& ft_atoi(line_splitted[x]) >= 0 && x < e->map_width))
+		{
+			free(map[y]);
 			map_error();
+		}
 		map[y][x] = ft_atoi(line_splitted[x]);
 		if ((x == 0 || x == e->map_width - 1 || y == 0 || y == e->map_height -
 					1) && map[y][x] == 0)
-			map_error();
+			{
+				free(map[y]);
+				map_error();
+			}
 	}
 	if (x != e->map_width)
+	{
+		free(map[y]);
 		map_error();
+	}
+	x--;
 	while (x > -1)
 	{
 		free(line_splitted[x]);

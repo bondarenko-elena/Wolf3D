@@ -16,6 +16,15 @@ int				main(int argc, char **argv)
 		env->mlx.window = mlx_new_window(env->mlx.mlx_init, WIDTH, HEIGHT, "Wolf3D@olbondar");
 		event(env);
 		mlx_loop(env->mlx.mlx_init);
+////////////////////////////////////////////////////////////////////////////////////////////////
+/*		env->map_height--;
+		while (env->map_height > -1)
+		{
+			free(env->map[env->map_height]);
+			env->map_height--;
+		}
+		free(env->map);*/
+////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 	if (argc == 2 && (check_file(argv[1]) == -1))
 		ft_putendl("Wrong input map. Available maps is between 1 and 3");
