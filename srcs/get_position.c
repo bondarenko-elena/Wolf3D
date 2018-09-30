@@ -18,11 +18,10 @@ void		get_position(int fd, t_env *e)
 		i++;
 	if (i != 4)
 	{
-		i--;
 		while (i > -1)
 		{
 			free(line_splitted[i]);
-			i--;
+			i--;		
 		}
 		free(line_splitted);
 		map_error();
@@ -31,7 +30,6 @@ void		get_position(int fd, t_env *e)
 	e->map_height = ft_atoi(line_splitted[1]);
 	e->player.position.x = ft_atoi(line_splitted[2]) + 0.5;
 	e->player.position.y = ft_atoi(line_splitted[3]) + 0.5;
-	i--;
 	while (i > -1)
 	{
 		free(line_splitted[i]);
