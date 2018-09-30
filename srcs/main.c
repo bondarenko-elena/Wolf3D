@@ -9,6 +9,7 @@ int				main(int argc, char **argv)
 		env = init_env();
 		if (open_file(env, argv[1]) == 0)
 		{
+			// mlx_destroy_window(env->mlx.mlx_init, env->mlx.window);
 			free(env);
 			ft_putendl("Unable to read file.");
 			return (-1);

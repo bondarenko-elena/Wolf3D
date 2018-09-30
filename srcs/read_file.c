@@ -1,22 +1,34 @@
 #include "../includes/wolf3d.h"
 
-int		read_file(int fd, t_env *e)
+int		read_file(int fd, t_env *env)
 {
 	char	*line;
 	int		y;
 	int		**map;
 
 	y = 0;
-	get_position(fd, e);
-	map = (int **)malloc(sizeof(int **) * e->map_height);
+	get_position(fd, env);
+	map = (int **)malloc(sizeof(int **) * env->map_height);
 	while (get_next_line(fd, &line) == 1)
 	{
-		read_line(line, y, map, e);
+		read_line(line, y, map, env);
+		free(line);
 		y++;
 	}
-	if (map[(int)e->player.position.x][(int)e->player.position.y] != 0)
+	free(line);
+	if (map[(int)env->player.position.x][(int)env->player.position.y] != 0)
+	{
+		while (env->map_height > -1)
+		{
+			// !!!
+			free(map[env->map_height]);
+			env->map_height--;
+		}
+		// !!!
+		free(map);
 		map_error();
-	e->map = map;
-	// ft_tabledel(map, )
+	}
+	// ???
+	env->map = map;
 	return (1);
 }

@@ -1,6 +1,6 @@
 #include "../includes/wolf3d.h"
 
-char	**ft_tabledel(char **ret, size_t len)
+char	**ft_tabledel_char(char **ret, size_t len)
 {
 	size_t	i;
 
