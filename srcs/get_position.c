@@ -10,6 +10,7 @@ void		get_position(int fd, t_env *e)
 	if (get_next_line(fd, &line) < 1)
 	{
 		free(line);
+		free(e);
 		map_error();
 	}
 	line_splitted = ft_strsplit(line, ' ');

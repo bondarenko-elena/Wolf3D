@@ -134,8 +134,6 @@ int				close_program(t_env *env);
 void			draw_line(t_env *e, int x, int start, int end);
 void			display_text(t_env *env);
 void			event(t_env *env);
-char			**ft_tabledel_char(char **ret, size_t len);
-char			**ft_tabledel_int(int **ret, size_t len);
 void			get_position(int fd, t_env *e);
 unsigned int	get_color(t_env *env, int x, int i, int end);
 t_env			*init_env(void);
