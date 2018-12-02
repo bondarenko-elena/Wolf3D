@@ -1,17 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_init.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: olbondar <olbondar@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/18 09:32:54 by olbondar          #+#    #+#             */
+/*   Updated: 2018/10/18 09:33:09 by olbondar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/wolf3d.h"
 
-void		ray_init(t_env *env, int x)
+void	ray_init(t_env *env, int x)
 {
-	env->ray.map.x = (int)env->ray.position.x;
-	env->ray.map.y = (int)env->ray.position.y;
-	env->ray.camera = 2 * x / (double)env->width - 1;
-	env->ray.direction.x = env->player.direction.x + env->player.plane.x * env->ray.camera;
-	env->ray.direction.y = env->player.direction.y + env->player.plane.y * env->ray.camera;
-	env->ray.delta.x = sqrt(1 + (env->ray.direction.y * env->ray.direction.y) /
-			(env->ray.direction.x * env->ray.direction.x));
-	env->ray.delta.y = sqrt(1 + (env->ray.direction.x * env->ray.direction.x) /
-			(env->ray.direction.y * env->ray.direction.y));
-	env->ray.hit = 0;
-	env->ray.distance = -1;
-	env->ray.hit_side = -1;
+	env->ray->camera = 2 * x / (double)SCREEN_WIDTH - 1;
+	env->ray->ray_dir_x = env->ray->dir_x + env->ray->plane_x
+		* env->ray->camera;
+	env->ray->ray_dir_y = env->ray->dir_y + env->ray->plane_y
+		* env->ray->camera;
+	env->ray->map_x = (int)env->ray->pos_x;
+	env->ray->map_y = (int)env->ray->pos_y;
+	env->ray->delta_dist_x = fabs(1 / env->ray->ray_dir_x);
+	env->ray->delta_dist_y = fabs(1 / env->ray->ray_dir_y);
+	env->ray->hit = 0;
 }

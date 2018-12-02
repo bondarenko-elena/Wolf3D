@@ -1,1 +1,0 @@
-gcc srcs/*.c libft/libft.a includes/wolf3d.h -std=c11 -Werror -Wextra -Wall -lm -lmlx -lXext -lX11 -L minilibx/ -I minilibx/

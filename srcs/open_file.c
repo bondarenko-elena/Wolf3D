@@ -1,14 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   open_file.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: olbondar <olbondar@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/18 09:32:54 by olbondar          #+#    #+#             */
+/*   Updated: 2018/10/18 09:46:16 by olbondar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/wolf3d.h"
 
-int				open_file(t_env *env, char *filename)
+int	open_file(t_env *env, char *filename)
 {
-	int		fd;
-
-	// fd = open(filename, O_DIRECTORY);
-	// if (fd >= 0)
-		// return (0);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (0);
-	return (read_file(fd, env));
+	if ((env->fd = open(filename, O_DIRECTORY)) >= 0)
+		map_error();
+	if ((env->fd = open(filename, O_RDONLY)) < 0)
+		map_error();
+	return (1);
 }

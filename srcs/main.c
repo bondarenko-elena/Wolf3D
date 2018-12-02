@@ -1,34 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: olbondar <olbondar@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/18 09:32:52 by olbondar          #+#    #+#             */
+/*   Updated: 2018/10/18 09:40:02 by olbondar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/wolf3d.h"
 
-int				main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	t_env	*env;
+	t_env		*env;
 
-	if (argc == 2 /*&& (check_file(argv[1]) == 0)*/)
+	env = NULL;
+	if (argc < 2 || argc > 2)
+		ft_putendl("Wrong number of arguments. Usage: ./Wolf3D maps/filename.");
+	if (argc == 2)
 	{
-		env = init_env();
+		env = init_env(env);
 		if (open_file(env, argv[1]) == 0)
 		{
-			free(env);
-			ft_putendl("Unable to read file.");
-			return (-1);
+			free_struct(env);
+			read_error();
 		}
-		env->mlx.window = mlx_new_window(env->mlx.mlx_init, WIDTH, HEIGHT, "Wolf3D@olbondar");
-		event(env);
-		mlx_loop(env->mlx.mlx_init);
-////////////////////////////////////////////////////////////////////////////////////////////////
-/*		env->map_height--;
-		while (env->map_height > -1)
+		if (!check_file(env))
 		{
-			free(env->map[env->map_height]);
-			env->map_height--;
+			free_struct(env);
+			map_error();
 		}
-		free(env->map);*/
-////////////////////////////////////////////////////////////////////////////////////////////////
+		else
+			read_file(env, argv[1]);
 	}
-	if (argc == 2 && (check_file(argv[1]) == -1))
-		ft_putendl("Wrong input map. Available maps is between 1 and 3");
-	if (argc < 2 || argc > 2)
-		ft_putendl("Wrong number of arguments. Usage: ./Wolf3D maps/map.n.");
 	return (0);
 }

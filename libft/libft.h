@@ -6,7 +6,7 @@
 /*   By: olbondar <olbondar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:40:05 by olbondar          #+#    #+#             */
-/*   Updated: 2018/09/30 11:08:06 by olbondar         ###   ########.fr       */
+/*   Updated: 2018/10/03 17:12:06 by olbondar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-
-# define BUFF_SIZE 8
-
-# define SETNULL(x, y, z) (free(x), y = NULL, z = 0)
+# include "get_next_line.h"
 
 typedef struct			s_list
 {
@@ -27,14 +24,6 @@ typedef struct			s_list
 	size_t				content_size;
 	struct s_list		*next;
 }						t_list;
-
-typedef struct			s_list_my
-{
-	void				*content;
-	size_t				content_size;
-	struct s_list_my	*next;
-	int					fd;
-}						t_list_my;
 
 typedef struct			s_data
 {
@@ -117,6 +106,5 @@ int						ft_min(int a, int b);
 size_t					ft_strlen_ch(const char *s, char c);
 size_t					ft_countwords(char const *str, char c);
 int						ft_strchrpos(const char *s, int c);
-int						get_next_line(const int fd, char **line);
 
 #endif

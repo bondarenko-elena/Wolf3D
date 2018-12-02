@@ -1,11 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_up.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: olbondar <olbondar@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/18 09:32:53 by olbondar          #+#    #+#             */
+/*   Updated: 2018/10/18 09:33:09 by olbondar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/wolf3d.h"
 
-void	move_up(t_env *env)
+void		move_up(t_env *env)
 {
-	if (env->map[(int)(env->player.position.x + env->player.direction.x * env->player.speed_move)]
-			[(int)env->player.position.y] == 0)
-		env->player.position.x += env->player.direction.x * env->player.speed_move;
-	if (env->map[(int)env->player.position.x][(int)(env->player.position.y + env->player.direction.y *
-				env->player.speed_move)] == 0)
-		env->player.position.y += env->player.direction.y * env->player.speed_move;
+	if (env->ray->map[(int)(env->ray->pos_x + env->ray->dir_x * 0.4)]
+		[(int)(env->ray->pos_y)] == 0)
+	{
+		env->ray->pos_x += env->ray->dir_x * 0.1;
+	}
+	if (env->ray->map[(int)(env->ray->pos_x)]
+		[(int)(env->ray->pos_y + env->ray->dir_y * 0.4)] == 0)
+	{
+		env->ray->pos_y += env->ray->dir_y * 0.1;
+	}
 }

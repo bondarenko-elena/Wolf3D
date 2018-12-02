@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_right.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: olbondar <olbondar@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/18 09:32:53 by olbondar          #+#    #+#             */
+/*   Updated: 2018/10/18 09:33:09 by olbondar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/wolf3d.h"
 
-void	move_right(t_env *env)
+void		move_right(t_env *env)
 {
-	t_dir_xy	old;
-
-	old.x = env->player.direction.x;
-	env->player.direction.x = env->player.direction.x * cos(-env->player.speed_turn) -
-		env->player.direction.y * sin(-env->player.speed_turn);
-	env->player.direction.y = old.x * sin(-env->player.speed_turn) + env->player.direction.y *
-		cos(-env->player.speed_turn);
-	old.x = env->player.plane.x;
-	env->player.plane.x = env->player.plane.x * cos(-env->player.speed_turn) -
-		env->player.plane.y * sin(-env->player.speed_turn);
-	env->player.plane.y = old.x * sin(-env->player.speed_turn) + env->player.plane.y *
-		cos(-env->player.speed_turn);
+	if (env->ray->map[(int)(env->ray->pos_x + env->ray->dir_x * cos(M)
+		- env->ray->dir_y * sin(M) * 0.4)][(int)env->ray->pos_y] == 0)
+	{
+		env->ray->pos_x += (env->ray->dir_x * cos(M) - env->ray->dir_y
+			* sin(M)) * C;
+	}
+	if (env->ray->map[(int)env->ray->pos_x][(int)(env->ray->pos_y
+		+ env->ray->dir_x * sin(M) * 0.4 + env->ray->dir_y * cos(M))] == 0)
+	{
+		env->ray->pos_y += (env->ray->dir_x * sin(M) + env->ray->dir_y
+			* cos(M)) * C;
+	}
 }

@@ -1,98 +1,91 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: olbondar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/18 09:36:16 by olbondar          #+#    #+#             */
+/*   Updated: 2018/10/18 11:05:41 by olbondar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# include "../minilibx/mlx.h"
 # include "../libft/libft.h"
+# include "../minilibx/mlx.h"
 # include <math.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <fcntl.h>
+# include <stdlib.h>
 # include <time.h>
 
-// size of screen
-# define WIDTH 1024
-# define HEIGHT 768
+# define SCREEN_WIDTH 1000
+# define SCREEN_HEIGHT 800
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 
-// ESC: for MAC OS keycode == 53; for Debian keycode == 65307
 # define KEY_ESC 53
-// W: for MAC OS keycode == 13; for Debian keycode == 119
+
 # define KEY_UP 13
-// S: for MAC OS keycode == 1; for Debian keycode == 115
 # define KEY_DOWN 1
-// A: for MAC OS keycode == 0; for Debian keycode == 97
 # define KEY_LEFT 0
-// D: for MAC OS keycode == 2; for Debian keycode == 100
 # define KEY_RIGHT 2
-// SPACE: for MAC OS keycode == 49; for Debian keycode == 32
-# define KEY_JUMP 49
-// UP: for MAC OS keycode == 126; for Debian keycode == 65362
+
 # define ARROW_UP 126
-// DOWN: for MAC OS keycode == 125; for Debian keycode == 65364
 # define ARROW_DOWN 125
-// LEFT: for MAC OS keycode == 123; for Debian keycode == 65361
 # define ARROW_LEFT 123
-// RIGHT: for MAC OS keycode == 124; for Debian keycode == 65363
 # define ARROW_RIGHT 124
-// M: for MAC OS keycode == 46; for Debian keycode == 109
-# define SWITCH_MUSIC 46
-// N: for MAC OS keycode == 45; for Debian keycode == 110
-# define MUTE 45
-// N: for MAC OS keycode == 17; for Debian keycode == 116
+
 # define SWITCH_TEXTURES 17
-// R: for MAC OS keycode == 15; for Debian keycode == 114
-# define RESET_TEXTURES 15
+# define SWITCH_MUSIC 46
+# define MUTE 45
 
-// for int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
-// x_mask is ignored on macos
-# define KEY_PRESS_MASK (1L<<0)
-// x_event set as 2 and funct set as an int key_press(int keycode, void *param) for a key press
-# define KEY_PRESS 2
-# define CLOSE_PRGRM_MASK (1L << 17)
-# define CLOSE_PRGRM 17
+# define ROTATE_LEFT 12
+# define ROTATE_RIGHT 14
 
-// valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full --leak-resolution=med sh run_wolf3d.sh maps/map.1
-
-typedef struct		s_i_xy
-{
-	int				x;
-	int				y;
-}					t_i_xy;
-
-typedef struct		s_dir_xy
-{
-	double			x;
-	double			y;
-}					t_dir_xy;
-
-typedef struct		s_player
-{
-	struct s_dir_xy	position;
-	struct s_dir_xy	direction;
-	struct s_dir_xy	plane;
-	double			speed_turn;
-	double			speed_move;
-	int				z;
-	char			is_jump;
-	char			move_left;
-	char			move_right;
-	char			move_up;
-	char			move_down;
-	char			move_jump;
-}					t_player;
+# define R 0.1
+# define M 1.5708
+# define C 0.05
 
 typedef struct		s_ray
 {
-	struct s_dir_xy	position;
-	struct s_dir_xy	direction;
-	struct s_i_xy	map;
-	struct s_dir_xy	side;
-	struct s_dir_xy	delta;
-	struct s_i_xy	step;
-	double			distance;
+	int				**map;
+	int				map_width;
+	int				map_height;
+	int				map_x;
+	int				map_y;
 	double			camera;
 	int				hit;
-	int				hit_side;
+	int				side_of_the_world;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			old_dir_x;
+	double			plane_x;
+	double			plane_y;
+	double			old_plane_x;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_d;
+	int				step_x;
+	int				step_y;
+	int				line_height;
+	int				start;
+	int				end;
+	unsigned int	color;
+	int				d;
+	int				switch_textures;
+	double			wall;
+	int				tex_x;
+	int				tex_y;
+	int				fl_tex_x;
+	int				fl_tex_y;
+	int				music_tumbler;
 }					t_ray;
 
 typedef struct		s_mlx
@@ -100,68 +93,90 @@ typedef struct		s_mlx
 	void			*mlx_init;
 	void			*window;
 	void			*image;
-	char			*pixel;
-	int				bits_per_pixel;
-	int				size_line;
+	int				*adress;
 	int				endian;
-	clock_t			last_frame;
-	clock_t			next_frame;
+	int				size_line;
+	int				bits_per_pixel;
 }					t_mlx;
+
+typedef struct		s_color
+{
+	int				red;
+	int				green;
+	int				blue;
+}					t_color;
 
 typedef struct		s_env
 {
-	struct s_mlx	mlx;
-	struct s_player	player;
-	struct s_ray	ray;
-	int				height;
-	int				width;
-	int				**map;
-	int				map_width;
-	int				map_height;
+	t_mlx			*mlx;
+	t_ray			*ray;
+	t_color			*color;
+	void			*img[4];
+	char			*data[4];
+	int				endian[4];
+	int				size_line[4];
+	int				bits_per_pixel[4];
+	int				fd;
+	int				up;
+	int				down;
+	int				left;
+	int				right;
+	int				rot_right;
+	int				rot_left;
+	int				check_chars;
 	unsigned int	color_1;
 	unsigned int	color_2;
 	unsigned int	color_3;
 	unsigned int	color_4;
-	unsigned int	color_sky;
-	unsigned int	color_ground;
-	int 			switch_textures;
-	int 			music_tumbler;
 }					t_env;
 
-unsigned int	add_smog(unsigned int c, double d);
-int 			check_file(char *filename);
-int				close_program(t_env *env);
-void			draw_line(t_env *e, int x, int start, int end);
-void			display_text(t_env *env);
-void			event(t_env *env);
-void			get_position(int fd, t_env *e);
-unsigned int	get_color(t_env *env, int x, int i, int end);
-t_env			*init_env(void);
-void			init_player(t_env *env);
-int				key_hook(int k, t_env *e);
-int				loop_hook(t_env *env);
-int				main(int argc, char **argv);
-void			map_error(void);
-void			malloc_error(void);
-void			move_left(t_env *e);
-void			move_right(t_env *e);
-void			move_up(t_env *e);
-void			move_down(t_env *e);
-void			move_jump(t_env *e);
-int				open_file(t_env *e, char *filename);
-void			put_pixel(t_env *env, int x, int y, unsigned int c);
-void 			play_music();
-int				read_file(int fd, t_env *env);
-void			read_line(char *line, int y, int **map, t_env *e);
-int 			return_wall_one(t_env *env, int x, int i, int end);
-int 			return_wall_three(t_env *env, int x, int i, int end);
-int 			return_wall_two(t_env *env, int x, int i, int end);
-void			ray_casting(t_env *env);
-void			ray_draw(t_env *env, int x);
-void			ray_calculate_distance(t_env *env);
-void			ray_calculate_step_side(t_env *env);
-void			ray_init(t_env *env, int x);
-void 			switch_moves(int keycode, t_env *env);
-void			switch_music(int keycode, t_env *env);
+unsigned int		add_smog(unsigned int c, double d);
+void				calculate_distance(t_env *env);
+void				calculate_step_side(t_env *env);
+int					check_file(t_env *env);
+int					check_line(char *str);
+int					check_map(t_env *env);
+int					check_map2(int length, char **str_splitted, char *str);
+int					check_walls_exist(t_ray *ray);
+void				default_wall(t_env *env, int x);
+void				define_color1(t_env *env, int def, int iterator);
+void				define_color2(t_env *env, int def, int iterator);
+void				ray_init(t_env *env, int x);
+void				display_text(t_env *env);
+void				do_magic(t_env *env);
+void				draw(t_env *env, int x);
+void				free_struct(t_env *env);
+void				free_tab_char(char **tab);
+void				free_tab_int(int **tab, int map_h);
+int					get_color_tex(t_env *env, int y, int t);
+void				get_data_addr(t_env *env);
+t_env				*init_env(t_env *env);
+void				init_map_size(t_env *env, int h);
+void				init_textures(t_env *env);
+void				init_window(t_env *env);
+int					key_press(int keycode, t_env *env);
+void				key_press_init(int keycode, t_env *env);
+int					key_release(int keycode, t_env *env);
+int					main(int argc, char **argv);
+void				malloc_error(void);
+void				map_error(void);
+void				move_down(t_env *env);
+void				move_left(t_env *env);
+void				move_right(t_env *env);
+void				move_up(t_env *env);
+int					moves(t_env *env);
+int					open_file(t_env *env, char *filename);
+void				play_music();
+void				print_keycode(int keycode);
+void				ray_casting(t_env *env);
+void				ray_init(t_env *env, int x);
+int					read_error(void);
+void				read_file(t_env *envs, char *filename);
+void				read_map(t_env *env);
+int					red_cross(t_env *env);
+void				redraw(t_env *env);
+void				rotate_left(t_env *env);
+void				rotate_right(t_env *env);
+void				textured_wall(t_env *env, int x);
 
 #endif

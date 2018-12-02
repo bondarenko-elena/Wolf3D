@@ -1,42 +1,64 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: olbondar <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/10/18 09:35:49 by olbondar          #+#    #+#              #
+#    Updated: 2018/10/18 09:36:01 by olbondar         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME := wolf3d
 
-SRC := add_smog.c \
+SRC :=	add_smog.c \
+		calculate_distance.c \
+		calculate_step_side.c \
 		check_file.c \
-		close_program.c \
-		draw_line.c \
+		check_line.c \
+		check_map.c \
+		check_map2.c \
+		check_walls_exist.c \
+		default_wall.c \
+		define_color1.c \
+		define_color2.c \
 		display_text.c \
-		event.c \
-		ft_tabledel_char.c \
-		ft_tabledel_int.c \
-		get_position.c \
-		get_color.c \
+		do_magic.c \
+		draw.c \
+		free_struct.c \
+		free_tab_char.c \
+		free_tab_int.c \
+		get_color_tex.c \
+		get_data_addr.c \
 		init_env.c \
-		init_player.c \
-		key_hook.c \
-		loop_hook.c \
+		init_map_size.c \
+		init_textures.c \
+		init_window.c \
+		key_press.c \
+		key_press_init.c \
+		key_release.c \
 		main.c \
-		map_error.c \
 		malloc_error.c \
+		map_error.c \
+		move_down.c \
 		move_left.c \
 		move_right.c \
 		move_up.c \
-		move_down.c \
-		move_jump.c \
+		moves.c \
 		open_file.c \
-		put_pixel.c \
 		play_music.c \
-		read_file.c \
-		read_line.c \
-		return_wall_one.c \
-		return_wall_three.c \
-		return_wall_two.c \
+		print_keycode.c \
 		ray_casting.c \
-		ray_draw.c \
-		ray_calculate_distance.c \
-		ray_calculate_step_side.c \
 		ray_init.c \
-		switch_moves.c \
-		switch_music.c \
+		read_error.c \
+		read_file.c \
+		read_map.c \
+		red_cross.c \
+		redraw.c \
+		rotate_left.c \
+		rotate_right.c \
+		textured_wall.c \
 
 CC := gcc
 SRC := $(addprefix srcs/,$(SRC))
