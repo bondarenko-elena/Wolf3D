@@ -39,4 +39,6 @@ void	draw(t_env *env, int x)
 		default_wall(env, x);
 	else if (env->ray->switch_textures == 1)
 		textured_wall(env, x);
+	def_floor_ceiling(env);
+	floor_ceiling(env, x);
 }

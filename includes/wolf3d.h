@@ -18,6 +18,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <time.h>
+# include <stdio.h>
 
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 800
@@ -72,6 +73,10 @@ typedef struct		s_ray
 	double			delta_dist_x;
 	double			delta_dist_y;
 	double			perp_wall_d;
+	double			dist_player;
+	double			curr_dist;
+	double			dist_wall;
+	double			weight;
 	int				step_x;
 	int				step_y;
 	int				line_height;
@@ -85,6 +90,10 @@ typedef struct		s_ray
 	int				tex_y;
 	int				fl_tex_x;
 	int				fl_tex_y;
+	double			fl_wall_x;
+	double			fl_wall_y;
+	double			curr_fl_x;
+	double			curr_fl_y;
 	int				music_tumbler;
 }					t_ray;
 
@@ -178,5 +187,7 @@ void				redraw(t_env *env);
 void				rotate_left(t_env *env);
 void				rotate_right(t_env *env);
 void				textured_wall(t_env *env, int x);
+void				def_floor_ceiling(t_env *env);
+void				floor_ceiling(t_env *env, int x);
 
 #endif

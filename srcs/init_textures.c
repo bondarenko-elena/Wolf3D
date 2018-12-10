@@ -22,14 +22,28 @@ void	init_textures(t_env *env)
 	w = 64;
 	h = 64;
 	env->img[0] = mlx_xpm_file_to_image(env->mlx->mlx_init,
-		"textures/1.xpm", &w, &h);
+		"textures/0.xpm", &w, &h);
 	env->img[1] = mlx_xpm_file_to_image(env->mlx->mlx_init,
-		"textures/2.xpm", &w, &h);
+		"textures/1.xpm", &w, &h);
 	env->img[2] = mlx_xpm_file_to_image(env->mlx->mlx_init,
-		"textures/3.xpm", &w, &h);
+		"textures/2.xpm", &w, &h);
 	env->img[3] = mlx_xpm_file_to_image(env->mlx->mlx_init,
+		"textures/3.xpm", &w, &h);
+	env->img[4] = mlx_xpm_file_to_image(env->mlx->mlx_init,
 		"textures/4.xpm", &w, &h);
-	while (i < 4)
+	env->img[5] = mlx_xpm_file_to_image(env->mlx->mlx_init,
+		"textures/5.xpm", &w, &h);
+	env->img[6] = mlx_xpm_file_to_image(env->mlx->mlx_init,
+		"textures/6.xpm", &w, &h);
+	env->img[7] = mlx_xpm_file_to_image(env->mlx->mlx_init,
+		"textures/7.xpm", &w, &h);
+	env->img[8] = mlx_xpm_file_to_image(env->mlx->mlx_init,
+		"textures/8.xpm", &w, &h);
+	env->img[9] = mlx_xpm_file_to_image(env->mlx->mlx_init,
+		"textures/9.xpm", &w, &h);
+	env->img[10] = mlx_xpm_file_to_image(env->mlx->mlx_init,
+		"textures/10.xpm", &w, &h);
+	while (i < 11)
 	{
 		if (env->img[i] == NULL)
 			malloc_error();
